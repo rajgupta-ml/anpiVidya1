@@ -1,0 +1,31 @@
+.teams-heading h1 {
+    font-size: clamp(6.06rem, 40vw, 60rem);
+    line-height: 5rem;
+}
+
+.switch:hover {
+    transition: all 100ms ease-in;
+    background-color: #5BC0F8;
+    box-shadow: 12px 12px 0 #FFC100, 24px 24px 0 #5197FF;
+}
+
+@media (min-width:50em) {
+    .teams-content-container {
+        margin-top: 100px;
+        flex-direction: row;
+        gap: 8rem;
+        align-items: flex-start;
+    }
+
+    .switchs-container {
+        gap: 3.375rem
+    }
+
+
+    .switch {
+        cursor: pointer;
+        width: 356px;
+        height: 120px;
+        font-size: 48px;
+    }
+}

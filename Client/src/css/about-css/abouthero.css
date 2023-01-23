@@ -1,0 +1,56 @@
+.about-heading {
+    font-size: clamp(6.06rem, 26vw, 30rem);
+    line-height: 0;
+    z-index: -10;
+
+
+}
+
+@media (min-width:50em) {
+    .about-even-col {
+        flex-direction: row;
+
+    }
+
+    .about-heading {
+        top: 30%
+    }
+
+    .about-content {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+    }
+
+    .about-animating-svg {
+        width: 50%;
+        aspect-ratio: 1;
+    }
+
+    .about-content-title {
+        font-size: 55px;
+        line-height: 4rem;
+    }
+
+    .about-content-sub-heading {
+        font-size: 32px;
+        line-height: 2.5rem;
+    }
+
+    .about-content-quote {
+        font-size: 24px;
+        line-height: 2rem;
+    }
+
+    .gear-container {
+        margin-top: -300px;
+    }
+
+    .line-contaner {
+        display: block;
+        position: absolute;
+        left: 28%;
+        width: 55%;
+        height: auto;
+    }
+}

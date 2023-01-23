@@ -1,0 +1,38 @@
+.social-icons>img {
+    width: 3rem;
+}
+
+
+@media (max-width: 50em) {
+
+    .right-content {
+        display: none;
+    }
+
+    .left-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .left-content h1 {
+        font-size: 3rem;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+    }
+
+
+}
+
+@media (min-width: 50em) {
+    .footer-gear {
+        display: block;
+        position: absolute;
+        width: 500px;
+        aspect-ratio: 1;
+        opacity: 0.25;
+        margin-bottom: 100px;
+    }
+}

@@ -1,0 +1,25 @@
+.signup-container {
+    height: calc(100vh - 6.25rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-input-field {
+    box-shadow: rgb(0, 0, 0) 12px 12px 0px;
+
+}
+
+.signup-cta {
+    box-shadow: rgb(0, 0, 0) 8px 8px 0px;
+    background-position: left;
+    transition: all 2s ease-in-out;
+}
+
+.signup-cta:hover {
+    background: linear-gradient(to right, #0B0000 25%, #FFCC33 0, #FFCC33 50%, #FF6633 0, #FF6633 75%, #65179C 0%);
+    background-size: 400%;
+    background-position: right;
+    color: white;
+}

@@ -1,0 +1,19 @@
+@media (min-width: 50em) {
+    .devContent h1 {
+        font-size: 96px;
+        line-height: 8rem;
+    }
+
+    .devContent p {
+        font-size: 40px;
+        line-height: 3rem;
+    }
+
+    .devStageContainer {
+        margin-top: 393px;
+    }
+
+    .sline {
+        display: block;
+    }
+}
