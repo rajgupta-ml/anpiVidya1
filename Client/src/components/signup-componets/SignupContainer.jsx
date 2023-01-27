@@ -4,39 +4,88 @@ import { NavLink } from 'react-router-dom'
 import arrow from '../../images/dropdownarrow.png'
 import { useState } from 'react'
 import { AnimatePresence, motion, spring } from 'framer-motion'
+import { useFormik } from 'formik'
+import { registerValidate } from '../../helper/validate'
+import accept from '../../images/accept 1.svg'
+import close from '../../images/close 2.svg'
+import Monkey from '../svg-componets/Monkey'
+
+
+
+
 
 function SignupContainer() {
+
     const [arrowOpen, setArrowOpen] = useState(false)
     const arrowFun = () => { setArrowOpen(!arrowOpen) }
+    const initialValues = {
+        username: '',
+        password: '',
+        confirmPassword: '',
+        userType: '',
+    }
+    const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+        initialValues: initialValues,
+        validate: registerValidate,
+        onSubmit: (values) => {
+            console.log(values)
+        }
+    })
+
+
+
     return (
         <div>
-            <div className="signup-container | gap-[4.25rem] max-width-container">
-                <div className="signup-heading | text-7xl underline md:text-9xl"><h1>Signup!</h1></div>
-                <form action="#" className='signup-form | '>
-                    <div className="input-fields | flex flex-col gap-12 ">
-                        <input type="text" placeholder='Enter your username' className=' signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#5BC0F8] border-4  border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px]' />
-                        <input type="password" placeholder='Enter your password' className='signup-input-field  | w-[350px] h-[71px] font-[poppins] px-8 bg-[#5BC0F8] border-4 border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px]' />
-                        <input type="password" placeholder='re-enter your password' className='signup-input-field  | w-[350px] h-[71px] font-[poppins] px-8 bg-[#5BC0F8] border-4 border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px]' />
-                        <div onClick={arrowFun} className="signup-input-field | cursor-pointer flex justify-between w-[350px] h-[71] px-8 py-4 border-4 border-black bg-[#5BC0F8] relative md:w-[495px]">
-                            <h1 className='flex justify-center items-center text-[1.25rem]'>User Type</h1>
-                            <div className="btn-container | cursor-pointer w-[28px] aspect-square" >
-                                <img src={arrow} className={arrowOpen ? "rotate-180 transition-all duration-300 ease-in-out" : "rotate-360 transition-all duration-300 ease-in-out"} />
-                            </div>
-                            <AnimatePresence>
-                                {arrowOpen &&
-                                    <motion.ul
-                                        initial={{ opacity: 0, y: "-50%" }}
-                                        animate={{ opacity: 1, y: "0%" }}
-                                        exit={{ opacity: 0, y: "-50%" }}
-                                        className=" border-2 border-black cursor-pointer absolute right-0 bottom-0 mb-[-120px] flex flex-col justify-center text-[1.25rem] bg-[#5BC0F8] z-10">
+            <div className="signup-container | flex flex-col justify-center items-center max-width-container ">
 
-                                        <li className='active | border-b-[1px] border-black p-2 px-8 hover:bg-[#0081C9] transition-all ease-in-out duration-200'>Student</li>
-                                        <li className='p-2 px-8 hover:bg-[#0081C9] transition-all ease-in-out duration-200'>Teacher</li>
-                                    </motion.ul>
-                                }
-                            </AnimatePresence>
+                <form className='signup-form ' onSubmit={handleSubmit}>
+                    <div className='flex justify-center mb-[20px] '>
+                        <Monkey />
+                    </div>
+
+                    <div className="input-fields | flex flex-col gap-4 ">
+                        <div className='relative'>
+
+                            <input values={values.username} onChange={handleChange} onBlur={handleBlur} name="username" type="text" placeholder='Enter your username' className={errors.username ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]" : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"} />
+                            {/* <img src={accept} alt="" className={!errors.username ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
+                            <img src={close} alt="" className={errors.username ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
+                            <div className={errors.username ? "error mt-2" : "hidden"}>
+                                <p className='text-[#E04F5F] pl-[0.5rem]'>{errors.username}</p>
+                            </div>
+                        </div>
+                        <div className='relative'>
+                            <input values={values.password} onChange={handleChange} onBlur={handleBlur} name="password" type="password" placeholder='Enter your password' className={errors.password ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]" : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"} />
+
+                            {/* <img src={accept} alt="" className={!errors.password ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
+                            <img src={close} alt="" className={errors.password ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
+                            <div className={errors.password ? "error mt-2" : "hidden"}>
+                                <p className='text-[#E04F5F] pl-[0.5rem]'>{errors.password}</p>
+                            </div>
 
                         </div>
+                        <div className='relative'>
+                            <input values={values.confirmPassword} onChange={handleChange} onBlur={handleBlur} name="confirmPassword" type="password" placeholder='re-enter your password' className={errors.confirmPassword ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]" : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"} />
+                            {/* 
+                            <img src={accept} alt="" className={!errors.confirmPassword ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
+                            <img src={close} alt="" className={errors.confirmPassword ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
+                            <div className={errors.confirmPassword ? "error mt-2" : "hidden"}>
+                                <p className='text-[#E04F5F] pl-[0.5rem]'>{errors.confirmPassword}</p>
+                            </div>
+                        </div>
+                        <div className="divSelectDropdownContainer | relative">
+                            <select onClick={arrowFun} values={values.userType} onChange={handleChange} onBlur={handleBlur} name="userType" className={errors.userType ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]" : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"}>
+                                <option value="" >User Type</option>
+                                <option value="Student"> Student</option>
+                                <option value="Teacher"> Teacher</option>
+                            </select>
+                            <div className="selectArrow absolute top-[8px] right-[10px] bg-[#F0F5FB] h-[80%] w-[60px] grid place-content-center pointer-events-none border-l-[1px] border-black ">
+                                <img src={arrow} className={
+                                    !arrowOpen ? "h-[28px] aspect-square transition-all duration-200 ease-in-out" : "rotate-180 h-[28px] aspect-square transition-all duration-200 ease-in-out"} alt="" />
+                            </div>
+
+
+                        </div>
+
                     </div>
                     <button type='submit' className='signup-cta | w-full h-[5.375rem] mt-[30px] border-4 border-black outline-none bg-[#FFC100] text-[3.375rem] text-white'><h1 className='rotate-[-2.13deg]'>submit</h1></button>
                     <div className='mt-[27px]'>
