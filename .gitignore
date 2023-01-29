@@ -3,7 +3,7 @@
 # dependencies
 Client/node_modules
 Server/node_modules
-Client/.env
+Client/config/.env
 Server/.env
 /.pnp
 .pnp.js
