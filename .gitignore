@@ -6,8 +6,12 @@ Client/node_modules
 Server/node_modules
 client/config/.env
 server/config/.env
-Client/config/.env
-Server/config/.env
+./Client/config/.env
+./Server/config/.env
+./client/config/.env
+./server/config/.env
+./Client/config/.env
+./Server/config/.env
 /.pnp
 .pnp.js
 
