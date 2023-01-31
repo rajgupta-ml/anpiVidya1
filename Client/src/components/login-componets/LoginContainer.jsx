@@ -26,7 +26,7 @@ function LoginContainer() {
                     </div>
 
                     <div className="input-fields | flex flex-col gap-4 ">
-                        <input type="text" placeholder='Enter your username' className=' log-input-field | w-[350px] h-[71px] px-8 bg-[#F0F5FB] border-4 border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px] font-[poppins]' />
+                        <input type="text" placeholder='Enter your email' className=' log-input-field | w-[350px] h-[71px] px-8 bg-[#F0F5FB] border-4 border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px] font-[poppins]' />
                         <input type="password" placeholder='Enter your password' className='log-input-field  | w-[350px] h-[71px] px-8 bg-[#F0F5FB] border-4 border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px] font-[poppins]' />
                     </div>
                     <button type='submit' className='log-cta | w-full h-[5.375rem] mt-[30px] border-4 border-black outline-none bg-[#FFC100] text-[3.375rem] text-white'><h1 className='rotate-[-2.13deg]'>submit</h1></button>
