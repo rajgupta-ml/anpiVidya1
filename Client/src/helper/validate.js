@@ -8,12 +8,12 @@ export async function loginValidation(values){
     return errors
 }
 const registerVerify = (error = {}, values) => {
-    if(!values.username){
-        error.username = "Username Required";
-    }else if(values.username.includes(" ")){
-        error.username = "Invalid Username"
-    }else if(values.username.length < 2 ){
-        error.username = "Username should be greater than 2 characters"
+    if(!values.email){
+        error.email = "email Required";
+    }else if(values.email.includes(" ")){
+        error.email = "Invalid email"
+    }else if(values.email.length < 2 ){
+        error.email = "email should be greater than 2 characters"
     }
 
     if(!values.password){

@@ -3,23 +3,23 @@ import '../../css/signup-css/signup.css'
 import { NavLink } from 'react-router-dom'
 import arrow from '../../images/dropdownarrow.png'
 import { useState } from 'react'
-import { AnimatePresence, motion, spring } from 'framer-motion'
 import { useFormik } from 'formik'
 import { registerValidate } from '../../helper/validate'
-import accept from '../../images/accept 1.svg'
-import close from '../../images/close 2.svg'
 import Monkey from '../svg-componets/Monkey'
-
-
-
+import axios from 'axios';
 
 
 function SignupContainer() {
-
+    const API = "http://localhost:8080/api/auth"
+    const config = {
+        Headers: {
+            "Content-Type": "application/json"
+        }
+    }
     const [arrowOpen, setArrowOpen] = useState(false)
     const arrowFun = () => { setArrowOpen(!arrowOpen) }
     const initialValues = {
-        username: '',
+        email: '',
         password: '',
         confirmPassword: '',
         userType: '',
@@ -28,11 +28,27 @@ function SignupContainer() {
         initialValues: initialValues,
         validate: registerValidate,
         onSubmit: (values) => {
-            console.log(values)
+            submitDetails(values, `${API}/register`);
+
+
         }
     })
 
 
+
+
+    async function submitDetails(values, URL) {
+        const { email, password, userType } = values
+        console.log({ email, password, userType })
+        try {
+            const response = await axios.post(URL, { email, password, userType }, config);
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+            if ((error.response.data.error).match("email")) console.log("duplicate email");
+        }
+
+    }
 
     return (
         <div>
@@ -46,11 +62,11 @@ function SignupContainer() {
                     <div className="input-fields | flex flex-col gap-4 ">
                         <div className='relative'>
 
-                            <input values={values.username} onChange={handleChange} onBlur={handleBlur} name="username" type="text" placeholder='Enter your username' className={errors.username ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]" : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"} />
-                            {/* <img src={accept} alt="" className={!errors.username ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
+                            <input values={values.email} onChange={handleChange} onBlur={handleBlur} name="email" type="email" placeholder='Enter your email' className={errors.email ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]" : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"} />
+                            {/* <img src={accept} alt="" className={!errors.email ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
                             <img src={close} alt="" className={errors.username ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
-                            <div className={errors.username ? "error mt-2" : "hidden"}>
-                                <p className='text-[#E04F5F] pl-[0.5rem]'>{errors.username}</p>
+                            <div className={errors.email ? "error mt-2" : "hidden"}>
+                                <p className='text-[#E04F5F] pl-[0.5rem]'>{errors.email}</p>
                             </div>
                         </div>
                         <div className='relative'>
