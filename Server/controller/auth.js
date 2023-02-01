@@ -14,7 +14,6 @@ exports.register = async (req, res, next) => {
         sendToken(user,201, res);
     } catch (error) {
         next(error);
-        console.log(error.message);
     }
 }
 

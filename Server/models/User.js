@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required:[true, "please provide a emaild id"],
         unique: [true, "email already exist"],
-        match: [/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/, "Please provide a vailid email"]
+        match: [/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/, "Please provide a valid email"]
     },
     password: {
         type: String,

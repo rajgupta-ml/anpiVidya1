@@ -45,7 +45,7 @@ function SignupContainer() {
             console.log(response);
         } catch (error) {
             console.log(error)
-            if ((error.response.data.error).match("email")) console.log("duplicate email");
+            // if ((error.response.data.error).match("email")) console.log("duplicate email");
         }
 
     }
