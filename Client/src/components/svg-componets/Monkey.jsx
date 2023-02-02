@@ -3,7 +3,7 @@ import React from 'react'
 function Monkey() {
     return (
         <div>
-            <svg className="w-[200px] h-[200px] border-2 rounded-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-[200px] h-[200px] border-2 rounded-full mt-[-100px]" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_323_3)">
                     <path d="M100 200C155.228 200 200 155.228 200 100C200 44.7715 155.228 0 100 0C44.7715 0 0 44.7715 0 100C0 155.228 44.7715 200 100 200Z" fill="#0079BC" />
                     <path d="M200 158.5C200 138.3 185.2 122 165 122H150.1V72.8003C150.1 45.4003 128.4 22.4003 101 22.0003C73 21.5003 50.1 44.1003 50.1 72.0003V122H35.8C16 122 0 138 0 157.8V213H200V158.5Z" fill="white" stroke="#3A5E77" stroke-width="2.5" stroke-linecap="round" />
