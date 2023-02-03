@@ -4,7 +4,17 @@ import '../../css/login-css/login.css'
 import { useFormik } from 'formik'
 import { loginValidation } from '../../helper/validate'
 import Monkey from '../svg-componets/Monkey'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 function LoginContainer() {
+    const navigate = useNavigate();
+    useEffect(()=> {
+        let login = localStorage.getItem('token');
+        if (!login) {
+            navigate('/login')
+        }
+    });
     const { values, errors, handleBlur, handleChange, handleSubmit
     } = useFormik({
         initialValues: {
