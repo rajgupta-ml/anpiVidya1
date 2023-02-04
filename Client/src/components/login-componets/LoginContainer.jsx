@@ -8,6 +8,14 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function LoginContainer() {
+
+    const API = "http://localhost:8080/api/auth"
+    const config = {
+        Headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
     const navigate = useNavigate();
     useEffect(()=> {
         let login = localStorage.getItem('token');
@@ -23,10 +31,23 @@ function LoginContainer() {
         },
         validate: loginValidation,
         onSubmit: (values) => {
-            console.log(values)
+            submitDetails(values, `${API}/login`);
         }
 
     })
+
+    async function submitDetails(values, URL) {
+        const { email, password} = values
+        console.log({ email, password})
+        try {
+            const response = await axios.post(URL, { email, password}, config);
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
     return (
         <div>
             <div className="login-container | gap-[4.25rem] max-width-container">
