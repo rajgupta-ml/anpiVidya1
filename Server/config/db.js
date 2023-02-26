@@ -1,11 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
-const DB= 'mongodb+srv://Adi2256:Adirj2256@cluster0.1jkn4q8.mongodb.net/apnividha?retryWrites=true&w=majority'
-const connectDB = async() => {
-   
-    await mongoose.connect(DB);
 
-    console.log("MongoDB connected")
+const connectDB = async () => {
+  await mongoose.connect(process.env.DB);
+
+  console.log("MongoDB connected");
 };
 
 module.exports = connectDB;
