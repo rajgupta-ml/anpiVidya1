@@ -1,23 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import "../../css/login-css/login.css";
-import { useFormik } from "formik";
-import { loginValidation } from "../../helper/validate";
-import Monkey from "../svg-componets/Monkey";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import '../../css/login-css/login.css';
+import { useFormik } from 'formik';
+import { loginValidation } from '../../helper/validate';
+import Monkey from '../svg-componets/Monkey';
 
 function LoginContainer() {
   const navigate = useNavigate();
 
-  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+  const {
+    values, errors, handleBlur, handleChange, handleSubmit,
+  } = useFormik({
     initialValues: {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
     },
     validate: loginValidation,
     onSubmit: (values) => {
-      console.log(values);
     },
   });
   return (
@@ -53,7 +52,7 @@ function LoginContainer() {
             <p>
               Not a member? &nbsp;
               <span className="text-[#FFC100] text-2xl cursor-pointer">
-                {" "}
+                {' '}
                 <NavLink to="/signup">Register Now</NavLink>
               </span>
             </p>

@@ -1,34 +1,33 @@
-require("dotenv").config({path: "./config/var/.env"});
-const express = require("express");
-const connectDB = require('./config/db');
-const errorHandler = require('./middleware/error')
-const cors = require("cors");
+/* eslint-disable import/extensions */
 
+// Interactor - Bussiness Login Blueprint
+// entities - Holds bussiness data and manpulate to the bussiness requirement
+// Persistance - Works with the Database
+import express from 'express';
+import * as dotenv from 'dotenv';
+import cors from 'cors';
+import createUserController from './controller/createUserController.js';
+import connectDB from './config/db.js';
+import validateUserController from './controller/validateUserController.js';
 
+const AUTH_PATH = '/api/auth/';
+
+// Config for the path of .env file
+dotenv.config({ path: '../server/hidden/.env' });
+
+// Adding functionality to the node js
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 connectDB();
-const app = express()
-app.use(express.json());
-app.use(cors());
 
-// middleWare
-app.use('/api/auth', require("./routes/auth"));
-app.use('/api/private', require("./routes/private"));
+const PORT = process.env.PORT ?? 5000;
 
-
-
-// error Handler should be last piece of middleware
-app.use(errorHandler);
-
-
-// START SERVER ONLY WHEN WE HAVE VALID CONNECTION
-const PORT = process.env.PORT || 5001;
-const server = app.listen(PORT, () => {
-    console.log(`The server is connected to http://localhost:${PORT}`)
-})
-
-process.on("unhandledRejection", (err, promise) => {
-    console.log(`log Error: ${err}`);
-    server.close(() => process.exit(1));
-
-})
+app.post(`${AUTH_PATH}register`, createUserController);
+app.post(`${AUTH_PATH}login`, validateUserController);
+// Starting the server
+app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`The server is running on ${PORT}`);
+});
