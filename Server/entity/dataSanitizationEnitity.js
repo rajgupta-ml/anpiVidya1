@@ -10,6 +10,7 @@ const DataSanitizationEntity = class dataSanitization {
     if (this.email !== undefined && !(this.email.match(emailPattern))) throw new Error('Email Id not safe');
     if ((this.password !== undefined && !this.password > 6) && typeof (this.password) !== 'string') throw new Error('password not safe');
     if ((this.userType !== undefined && this.userType.toLowerCase() === 'student') && this.userType.toLowerCase() === 'teacher') throw new Error('userType not safe');
+    return true;
   }
 };
 export default DataSanitizationEntity;

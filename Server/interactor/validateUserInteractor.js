@@ -8,8 +8,8 @@ const validateUserInteractor = async (
   const DataInProperFormat = new ValidateUserDataEntity(password);
   const userDataSanitization = new DataSanitizationEntity({ email, password });
   userDataSanitization.userDataSanitization();
-  const fetchPassword = await validateUserPersistance({ email });
-  await DataInProperFormat.ValidatePassword({ hashedPassword: fetchPassword });
+  const fetchPassword = await validateUserPersistance({ email, expirationDate: '1h' });
+  await DataInProperFormat.ValidatePassword({ hashedPassword: fetchPassword.fetchPassword });
   const JWT_TOKEN = createJwt(email);
   return JWT_TOKEN;
 };
