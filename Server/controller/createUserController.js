@@ -1,15 +1,16 @@
 /* eslint-disable import/extensions */
+// eslint-disable-next-line import/extensions
 import createUserInteractor from '../interactor/createUserInteractor.js';
 import CreateUserDataEntity from '../entity/createUserDataEntity.js';
-// eslint-disable-next-line import/extensions
 import createUserPersistance from '../persistance/createUserPersistance.js';
+import DataSanitizationEntity from '../entity/dataSanitizationEnitity.js';
 
 const registerUsers = async (request, response) => {
   const { email, password, userType } = request.body;
 
   try {
     await createUserInteractor(
-      { CreateUserDataEntity, createUserPersistance },
+      { CreateUserDataEntity, createUserPersistance, DataSanitizationEntity },
       { email, password, userType },
     );
     response.status(200).json({ success: 'true' });
