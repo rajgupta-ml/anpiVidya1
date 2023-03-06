@@ -1,18 +1,17 @@
-import React from "react";
-import "../../css/signup-css/signup.css";
-import { NavLink } from "react-router-dom";
-import arrow from "../../images/dropdownarrow.png";
-import { useState } from "react";
-import { useFormik } from "formik";
-import { registerValidate } from "../../helper/validate";
-import Monkey from "../svg-componets/Monkey";
-import axios from "axios";
+import React, { useState } from 'react';
+import '../../css/signup-css/signup.css';
+import { NavLink } from 'react-router-dom';
+import { useFormik } from 'formik';
+import axios from 'axios';
+import arrow from '../../images/dropdownarrow.png';
+import { registerValidate } from '../../helper/validate';
+import Monkey from '../svg-componets/Monkey';
 
 function SignupContainer() {
-  const API = "http://localhost:8080/api/auth";
+  const API = 'http://localhost:8080/api/auth';
   const config = {
     Headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   const [arrowOpen, setArrowOpen] = useState(false);
@@ -20,13 +19,15 @@ function SignupContainer() {
     setArrowOpen(!arrowOpen);
   };
   const initialValues = {
-    email: "",
-    password: "",
-    confirmPassword: "",
-    userType: "",
+    email: '',
+    password: '',
+    confirmPassword: '',
+    userType: '',
   };
-  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: initialValues,
+  const {
+    values, errors, handleBlur, handleChange, handleSubmit,
+  } = useFormik({
+    initialValues,
     validate: registerValidate,
     onSubmit: (values) => {
       submitDetails(values, `${API}/register`);
@@ -40,13 +41,12 @@ function SignupContainer() {
       const response = await axios.post(
         URL,
         { email, password, userType },
-        config
+        config,
       );
       // console.log(response);
     } catch (error) {
       // console.log(error)
-      if (error.response.data.error.match("email"))
-        console.log("duplicate email");
+      if (error.response.data.error.match('email')) { console.log('duplicate email'); }
     }
   }
 
@@ -69,13 +69,13 @@ function SignupContainer() {
                 placeholder="Enter your email"
                 className={
                   errors.email
-                    ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]"
-                    : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"
+                    ? 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                    : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
                 }
               />
               {/* <img src={accept} alt="" className={!errors.email ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
                             <img src={close} alt="" className={errors.username ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
-              <div className={errors.email ? "error mt-2" : "hidden"}>
+              <div className={errors.email ? 'error mt-2' : 'hidden'}>
                 <p className="text-[#E04F5F] pl-[0.5rem]">{errors.email}</p>
               </div>
             </div>
@@ -89,14 +89,14 @@ function SignupContainer() {
                 placeholder="Enter your password"
                 className={
                   errors.password
-                    ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]"
-                    : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"
+                    ? 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                    : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
                 }
               />
 
               {/* <img src={accept} alt="" className={!errors.password ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
                             <img src={close} alt="" className={errors.password ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
-              <div className={errors.password ? "error mt-2" : "hidden"}>
+              <div className={errors.password ? 'error mt-2' : 'hidden'}>
                 <p className="text-[#E04F5F] pl-[0.5rem]">{errors.password}</p>
               </div>
             </div>
@@ -110,14 +110,14 @@ function SignupContainer() {
                 placeholder="re-enter your password"
                 className={
                   errors.confirmPassword
-                    ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]"
-                    : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"
+                    ? 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                    : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
                 }
               />
-              {/* 
+              {/*
                             <img src={accept} alt="" className={!errors.confirmPassword ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
                             <img src={close} alt="" className={errors.confirmPassword ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
-              <div className={errors.confirmPassword ? "error mt-2" : "hidden"}>
+              <div className={errors.confirmPassword ? 'error mt-2' : 'hidden'}>
                 <p className="text-[#E04F5F] pl-[0.5rem]">
                   {errors.confirmPassword}
                 </p>
@@ -132,8 +132,8 @@ function SignupContainer() {
                 name="userType"
                 className={
                   errors.userType
-                    ? "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]"
-                    : "signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]"
+                    ? 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                    : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
                 }
               >
                 <option value="">User Type</option>
@@ -145,8 +145,8 @@ function SignupContainer() {
                   src={arrow}
                   className={
                     !arrowOpen
-                      ? "h-[28px] aspect-square transition-all duration-200 ease-in-out"
-                      : "rotate-180 h-[28px] aspect-square transition-all duration-200 ease-in-out"
+                      ? 'h-[28px] aspect-square transition-all duration-200 ease-in-out'
+                      : 'rotate-180 h-[28px] aspect-square transition-all duration-200 ease-in-out'
                   }
                   alt=""
                 />
@@ -163,7 +163,7 @@ function SignupContainer() {
             <p>
               Already a member? &nbsp;
               <span className="text-[#FFC100] text-2xl cursor-pointer">
-                {" "}
+                {' '}
                 <NavLink to="/login">Login</NavLink>
               </span>
             </p>
