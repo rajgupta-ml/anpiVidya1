@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 
 const ValidateUserDataEntity = class ValidateUserDataEntity {
-  constructor(password) {
+  constructor({ password }) {
     this.password = password;
   }
 

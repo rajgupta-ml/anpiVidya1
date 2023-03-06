@@ -16,12 +16,11 @@ const createChangePasswordTokenController = async (request, response) => {
         sendPasswordTokenPersistance,
       },
       { email },
-
-      response.status(200).json({
-        success: 'true',
-        message: 'Email sent Succesfully',
-      }),
     );
+    response.status(200).json({
+      success: 'true',
+      message: 'Email sent Succesfully',
+    });
   } catch (error) {
     response.status(401).json({
       success: 'false',
