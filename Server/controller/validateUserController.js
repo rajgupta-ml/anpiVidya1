@@ -14,7 +14,6 @@ const validateUserController = async (request, response) => {
       },
       { email, password },
     );
-
     response.status(200).json({ success: 'true', JWT_TOKEN });
   } catch (error) {
     response.status(400).json({

@@ -10,7 +10,7 @@ const createChangePasswordTokenInteractor = async (
   const userDataCleanUp = new DataSanitizationEntity({ email });
   userDataCleanUp.userDataSanitization();
   await validateUserPersistance({ email });
-  const PASSWORD_TOKEN = createJwt({ email, expirationDate: '600' });
+  const PASSWORD_TOKEN = createJwt({ email, expirationDate: '10m' });
   sendPasswordTokenPersistance({ email, PASSWORD_TOKEN });
 };
 
