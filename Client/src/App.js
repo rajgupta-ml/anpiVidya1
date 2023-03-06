@@ -1,21 +1,17 @@
-import './css/general-css/app.css'
-import {Router} from 'react-router-dom'
+import './css/general-css/app.css';
+import React from 'react';
 import AnimatedRoutes from './components/general-componets/AnimatedRoutes';
-
-
-
 
 function App() {
   return (
-    <div >
+    // eslint-disable-next-line react/jsx-filename-extension
+    <div>
 
-        <AnimatedRoutes/>
+      <AnimatedRoutes />
 
     </div>
- 
- 
-    
-  )
+
+  );
 }
 
 export default App;
