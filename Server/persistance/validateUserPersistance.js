@@ -6,7 +6,7 @@ const validateUserPersistance = async ({ email }) => {
   const isUserPresent = await UserSchema.find({ email });
   if (isUserPresent.length > 0) fetchPassword = isUserPresent[0].password;
   else throw new Error('user not found');
-  return fetchPassword;
+  return { fetchPassword, success: 'true' };
 };
 
 export default validateUserPersistance;

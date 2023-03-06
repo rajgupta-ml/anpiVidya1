@@ -3,12 +3,15 @@ import validateUserInteractor from '../interactor/validateUserInteractor.js';
 import ValidateUserDataEntity from '../entity/validateUserDataEntity.js';
 import validateUserPersistance from '../persistance/validateUserPersistance.js';
 import createJwt from '../persistance/createJwt.js';
+import DataSanitizationEntity from '../entity/dataSanitizationEnitity.js';
 
 const validateUserController = async (request, response) => {
   const { email, password } = request.body;
   try {
     const JWT_TOKEN = await validateUserInteractor(
-      { ValidateUserDataEntity, validateUserPersistance, createJwt },
+      {
+        ValidateUserDataEntity, validateUserPersistance, createJwt, DataSanitizationEntity,
+      },
       { email, password },
     );
 
