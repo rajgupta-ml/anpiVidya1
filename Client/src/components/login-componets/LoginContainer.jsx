@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import '../../css/login-css/login.css';
 import { useFormik } from 'formik';
 import { loginValidation } from '../../helper/validate';
 import Monkey from '../svg-componets/Monkey';
 
 function LoginContainer() {
-  const navigate = useNavigate();
-
   const {
+    // eslint-disable-next-line no-unused-vars
     values, errors, handleBlur, handleChange, handleSubmit,
   } = useFormik({
     initialValues: {
@@ -16,11 +15,12 @@ function LoginContainer() {
       password: '',
     },
     validate: loginValidation,
-    onSubmit: (values) => {
+    // eslint-disable-next-line no-unused-vars
+    onSubmit: () => {
     },
   });
   return (
-    <div>
+    <div className="mt-[4rem]">
       <div className="login-container | gap-[4.25rem] max-width-container">
         <form
           action="#"
@@ -48,14 +48,17 @@ function LoginContainer() {
           >
             <h1 className="rotate-[-2.13deg]">submit</h1>
           </button>
-          <div className="mt-[27px]">
-            <p>
-              Not a member? &nbsp;
-              <span className="text-[#FFC100] text-2xl cursor-pointer">
-                {' '}
-                <NavLink to="/signup">Register Now</NavLink>
-              </span>
-            </p>
+          <div className="mt-[27px] w-full flex flex-col md:flex-row justify-around">
+            <div>
+              <NavLink to="/forgotpassword" className="text-[#fff] text-sm">FORGOT PASSWORD?</NavLink>
+            </div>
+            <div>
+              <p className="text-[#fff] text-sm">
+                Not a member?
+                <NavLink to="/signup" className="text-[#FFC100] text-sm md:text-xl"> Register Now</NavLink>
+              </p>
+            </div>
+
           </div>
         </form>
       </div>
