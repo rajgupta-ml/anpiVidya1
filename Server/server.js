@@ -10,6 +10,7 @@ import createUserController from './controller/createUserController.js';
 import connectDB from './config/db.js';
 import validateUserController from './controller/validateUserController.js';
 import createChangePasswordTokenController from './controller/createChangePasswordTokenController.js';
+import validateChangePasswordTokenController from './controller/validateChangePasswordTokenController.js';
 
 const AUTH_PATH = '/api/auth/';
 
@@ -27,7 +28,8 @@ const PORT = process.env.PORT ?? 5000;
 
 app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
-app.post(`${AUTH_PATH}send-access-token`, createChangePasswordTokenController);
+app.post(`${AUTH_PATH}change-password`, createChangePasswordTokenController);
+app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
 // Starting the server
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
