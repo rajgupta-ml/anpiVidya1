@@ -2,45 +2,73 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../css/login-css/login.css';
 import { useFormik } from 'formik';
-import { loginValidation } from '../../helper/validate';
+import { loginValidationSchema } from '../../helper/validate';
 import Monkey from '../svg-componets/Monkey';
 
 function LoginContainer() {
+  const initialValues = {
+    email: '',
+    password: '',
+  };
   const {
-    // eslint-disable-next-line no-unused-vars
-    values, errors, handleBlur, handleChange, handleSubmit,
+    values, errors, handleBlur, handleSubmit, handleChange,
   } = useFormik({
-    initialValues: {
-      username: '',
-      password: '',
-    },
-    validate: loginValidation,
+    initialValues,
+    validationSchema: loginValidationSchema,
     // eslint-disable-next-line no-unused-vars
-    onSubmit: () => {
+    onSubmit: (submitValues) => {
     },
   });
   return (
+
     <div className="mt-[4rem]">
       <div className="login-container | gap-[4.25rem] max-width-container">
         <form
           action="#"
           className="login-form | bg-[#0079BC] p-2 max-w-[720px] w-full flex flex-col items-center"
+          onSubmit={handleSubmit}
         >
           <div className="flex justify-center mb-[20px]">
             <Monkey />
           </div>
 
           <div className="input-fields | flex flex-col gap-4 ">
-            <input
-              type="text"
-              placeholder="Enter your email"
-              className=" log-input-field | w-full  h-[71px] px-8 bg-[#F0F5FB] border-4 border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px] font-[poppins]"
-            />
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="log-input-field  | w-full  h-[71px] px-8 bg-[#F0F5FB] border-4 border-black placeholder:text-black placeholder: text-[1.25rem] outline-none md:w-[495px] font-[poppins]"
-            />
+            <div className="relative">
+
+              <input
+                onChange={handleChange}
+                onBlur={handleBlur}
+                values={values.email}
+                type="email"
+                placeholder="Enter your email"
+                className={errors.email
+                  ? ' log-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                  : 'log-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'}
+                name="email"
+              />
+              <div className={errors.email ? 'error mt-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem]">{errors.email}</p>
+              </div>
+            </div>
+            <div className="realtive">
+
+              <input
+                onChange={handleChange}
+                onBlur={handleBlur}
+                values={values.password}
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                className={
+                errors.password
+                  ? ' log-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                  : 'log-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+}
+              />
+              <div className={errors.password ? 'error mt-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem]">{errors.password}</p>
+              </div>
+            </div>
           </div>
           <button
             type="submit"

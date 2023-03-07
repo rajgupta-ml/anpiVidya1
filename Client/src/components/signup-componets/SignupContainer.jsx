@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import arrow from '../../images/dropdownarrow.png';
-import { registerValidate } from '../../helper/validate';
+import { registerValidationSchema } from '../../helper/validate';
 import Monkey from '../svg-componets/Monkey';
 
 function SignupContainer() {
@@ -29,9 +29,9 @@ function SignupContainer() {
     values, errors, handleBlur, handleChange, handleSubmit,
   } = useFormik({
     initialValues,
-    validate: registerValidate,
-    onSubmit: (values) => {
-      submitDetails(values, `${API}/register`);
+    validationSchema: registerValidationSchema,
+    onSubmit: (submitValues) => {
+      submitDetails(submitValues, `${API}/register`);
     },
   });
 

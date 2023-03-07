@@ -1,33 +1,32 @@
-/* eslint-disable */
-export async function loginValidation(values) {
-  const errors = registerVerify({}, values);
-  return errors;
-}
-export async function registerValidate(values) {
-  const errors = registerVerify({}, values);
-  return errors;
-}
-const registerVerify = (values, error = {}) => {
-  if (!values.email) {
-    error.email = 'email Required';
-  } else if (values.email.includes(' ')) {
-    error.email = 'Invalid email';
-  } else if (values.email.length < 2) {
-    error.email = 'email should be greater than 2 characters';
-  }
+import * as Yup from 'yup';
 
-  if (!values.password) {
-    error.password = 'password Required';
-  }
+export const registerValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Not a proper email')
+    .required('Email is required'),
 
-  if (values.password !== (values.confirmPassword)) {
-    error.confirmPassword = 'password does not match';
-  } else if (!values.password) {
-    error.confirmPassword = 'confirm password required';
-  }
+  password: Yup.string()
+    .min(6, 'Password should be greater that 6 characters')
+    .required('Password is Required'),
+  confirmPassword: Yup.string()
+    .min(6)
+    .when('password', {
+      is: (val) => (!!(val && val.length > 0)),
+      then: Yup.string().oneOf(
+        [Yup.ref('password')],
+        'Both password need to be the same',
+      ),
+    })
+    .required('Confirm Password Required'),
+  userType: Yup.string().required('UserType is required'),
+});
 
-  if (values.userType !== 'Student' && values.userType !== 'Teacher') {
-    error.userType = 'UserType Required';
-  }
-  return error;
-};
+export const loginValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Not a proper email')
+    .required('Email is required'),
+
+  password: Yup.string()
+    .min(6, 'Password should be greater that 6 characters')
+    .required('Password is Required'),
+});
