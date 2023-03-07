@@ -16,7 +16,7 @@ const sendPasswordTokenPersistance = ({ email, PASSWORD_TOKEN }) => {
     to: email,
     subject: 'This email is regarding change the password ',
     html: `<h1>This is regarding change password</h1>
-            <a href = 'http://localhost:8080/change-password/${PASSWORD_TOKEN}'>http://localhost:8080/change-password/${PASSWORD_TOKEN}</a>
+            <a href = 'http://localhost:3000/change-password/${PASSWORD_TOKEN}'>http://localhost:3000/change-password/${PASSWORD_TOKEN}</a>
             <h2>If not sent by you, Please Ignore this message`,
   };
 

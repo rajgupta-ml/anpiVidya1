@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import '../../css/signup-css/signup.css';
 import { useFormik } from 'formik';
+import { toast, ToastContainer } from 'react-toastify';
 import arrow from '../../images/dropdownarrow.png';
 import { registerValidationSchema } from '../../helper/validate';
 import Monkey from '../svg-componets/Monkey';
 import registrationEndpoint from '../../apiendpoints/registrationEndpoint';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function SignupContainer() {
   const navigate = useNavigate();
@@ -27,9 +29,16 @@ function SignupContainer() {
     onSubmit: async (submitValues) => {
       try {
         await registrationEndpoint(submitValues);
-        navigate('/login');
+        toast.success('You Have Registerd Successfully');
+        setTimeout(() => {
+          navigate('/login');
+        }, 4500);
       } catch (error) {
-        if ((error.response.data.success) === 'false') alert('Something is Wrong');
+        if (error.response.data.err.split(' ')[0] === 'E11000') {
+          toast.error('This Email Id is Already Registered', { autoClose: false });
+        } else {
+          toast.error('Something Went Wrong!');
+        }
       }
     },
   });
@@ -60,8 +69,8 @@ function SignupContainer() {
               absolute top-[35%] right-[5%]' : "hidden"} />
         <img src={close} alt="" className={errors.username ? 'error-icon |
         absolute top-[23%] right-[5%] ' : "hidden"} /> */}
-              <div className={errors.email ? 'error mt-2' : 'hidden'}>
-                <p className="text-[#E04F5F] pl-[0.5rem]">{errors.email}</p>
+              <div className={errors.email ? 'error | absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">{errors.email}</p>
               </div>
             </div>
             <div className="relative">
@@ -83,8 +92,8 @@ function SignupContainer() {
                absolute top-[35%] right-[5%]' : "hidden"} />
                             <img src={close} alt="" className={errors.password ?
                             'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
-              <div className={errors.password ? 'error mt-2' : 'hidden'}>
-                <p className="text-[#E04F5F] pl-[0.5rem]">{errors.password}</p>
+              <div className={errors.password ? 'error | absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">{errors.password}</p>
               </div>
             </div>
             <div className="relative">
@@ -106,8 +115,8 @@ function SignupContainer() {
                               'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
                             <img src={close} alt="" className={errors.confirmPassword ?
                             'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
-              <div className={errors.confirmPassword ? 'error mt-2' : 'hidden'}>
-                <p className="text-[#E04F5F] pl-[0.5rem]">
+              <div className={errors.confirmPassword ? 'error | absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">
                   {errors.confirmPassword}
                 </p>
               </div>
@@ -159,6 +168,7 @@ function SignupContainer() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

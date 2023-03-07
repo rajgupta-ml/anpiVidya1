@@ -28,7 +28,7 @@ const PORT = process.env.PORT ?? 5000;
 
 app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
-app.post(`${AUTH_PATH}change-password`, createChangePasswordTokenController);
+app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);
 app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
 // Starting the server
 app.listen(PORT, () => {

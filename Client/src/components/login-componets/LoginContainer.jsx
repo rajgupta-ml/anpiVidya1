@@ -2,9 +2,11 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../../css/login-css/login.css';
 import { useFormik } from 'formik';
+import { toast, ToastContainer } from 'react-toastify';
 import { loginValidationSchema } from '../../helper/validate';
 import Monkey from '../svg-componets/Monkey';
 import loginEndpoint from '../../apiendpoints/loginEndpoint';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function LoginContainer() {
   const naviagte = useNavigate();
@@ -17,15 +19,21 @@ function LoginContainer() {
   } = useFormik({
     initialValues,
     validationSchema: loginValidationSchema,
-    // eslint-disable-next-line no-unused-vars
     onSubmit: async (submitValues) => {
       try {
         await loginEndpoint(submitValues);
-        alert('Login Succefull');
+        toast.success('Login Successfull');
       } catch (error) {
-        alert(error.response.data.err);
-        if ((error.response.data.err) === 'User not found') naviagte('/signup');
-        else alert(error.response.data.err);
+        if ((error.response.data.err) === 'User not found') {
+          toast.error('Looks Like You are not an user');
+          setTimeout(() => {
+            naviagte('/signup');
+          }, 4500);
+        } else if (error.response.data.err === 'Password Does not Match') {
+          toast.error('Looks like you have entered the wrong password');
+        } else {
+          toast.error('Something went Wrong!, Please try again after some time');
+        }
       }
     },
   });
@@ -56,11 +64,11 @@ function LoginContainer() {
                   : 'log-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'}
                 name="email"
               />
-              <div className={errors.email ? 'error mt-2' : 'hidden'}>
-                <p className="text-[#E04F5F] pl-[0.5rem]">{errors.email}</p>
+              <div className={errors.email ? 'error absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">{errors.email}</p>
               </div>
             </div>
-            <div className="realtive">
+            <div className="relative">
 
               <input
                 onChange={handleChange}
@@ -75,8 +83,8 @@ function LoginContainer() {
                   : 'log-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
 }
               />
-              <div className={errors.password ? 'error mt-2' : 'hidden'}>
-                <p className="text-[#E04F5F] pl-[0.5rem]">{errors.password}</p>
+              <div className={errors.password ? 'error | absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">{errors.password}</p>
               </div>
             </div>
           </div>
@@ -100,6 +108,7 @@ function LoginContainer() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

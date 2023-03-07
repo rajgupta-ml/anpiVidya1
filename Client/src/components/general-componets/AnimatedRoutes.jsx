@@ -6,7 +6,7 @@ import About from '../about-components/About';
 import Login from '../login-componets/Login';
 import Signup from '../signup-componets/Signup';
 import ForgotPassword from '../login-componets/ForgotPassword';
-import VerifyOTP from '../login-componets/VerifyOTP';
+import SuccessfullyEmailSent from '../login-componets/successfullyEmailSent';
 import NewPassword from '../login-componets/NewPassword';
 
 function AnimatedRoutes() {
@@ -20,8 +20,8 @@ function AnimatedRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="/forgotpassword/verify" element={<VerifyOTP />} />
-          <Route path="/forgotpassword/verify/newpassword" element={<NewPassword />} />
+          <Route path="/successfully-email-sent" element={<SuccessfullyEmailSent />} />
+          <Route path="/change-password/:id" element={<NewPassword />} />
 
         </Routes>
       </AnimatePresence>
