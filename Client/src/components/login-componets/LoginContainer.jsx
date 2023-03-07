@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import '../../css/login-css/login.css';
 import { useFormik } from 'formik';
 import { loginValidationSchema } from '../../helper/validate';
 import Monkey from '../svg-componets/Monkey';
+import loginEndpoint from '../../apiendpoints/loginEndpoint';
 
 function LoginContainer() {
+  const naviagte = useNavigate();
   const initialValues = {
     email: '',
     password: '',
@@ -16,7 +18,15 @@ function LoginContainer() {
     initialValues,
     validationSchema: loginValidationSchema,
     // eslint-disable-next-line no-unused-vars
-    onSubmit: (submitValues) => {
+    onSubmit: async (submitValues) => {
+      try {
+        await loginEndpoint(submitValues);
+        alert('Login Succefull');
+      } catch (error) {
+        alert(error.response.data.err);
+        if ((error.response.data.err) === 'User not found') naviagte('/signup');
+        else alert(error.response.data.err);
+      }
     },
   });
   return (

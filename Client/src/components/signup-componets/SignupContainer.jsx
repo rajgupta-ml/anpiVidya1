@@ -1,20 +1,14 @@
-/* eslint-disable */
 import React, { useState } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
 import '../../css/signup-css/signup.css';
-import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
-import axios from 'axios';
 import arrow from '../../images/dropdownarrow.png';
 import { registerValidationSchema } from '../../helper/validate';
 import Monkey from '../svg-componets/Monkey';
+import registrationEndpoint from '../../apiendpoints/registrationEndpoint';
 
 function SignupContainer() {
-  const API = 'http://localhost:8080/api/auth';
-  const config = {
-    Headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  const navigate = useNavigate();
   const [arrowOpen, setArrowOpen] = useState(false);
   const arrowFun = () => {
     setArrowOpen(!arrowOpen);
@@ -30,27 +24,15 @@ function SignupContainer() {
   } = useFormik({
     initialValues,
     validationSchema: registerValidationSchema,
-    onSubmit: (submitValues) => {
-      submitDetails(submitValues, `${API}/register`);
+    onSubmit: async (submitValues) => {
+      try {
+        await registrationEndpoint(submitValues);
+        navigate('/login');
+      } catch (error) {
+        if ((error.response.data.success) === 'false') alert('Something is Wrong');
+      }
     },
   });
-
-  async function submitDetails(values, URL) {
-    const { email, password, userType } = values;
-    console.log({ email, password, userType });
-    try {
-      const response = await axios.post(
-        URL,
-        { email, password, userType },
-        config,
-      );
-      // console.log(response);
-    } catch (error) {
-      // console.log(error)
-      if (error.response.data.error.match('email')) { console.log('duplicate email'); }
-    }
-  }
-
   return (
     <div>
       <div className="signup-container | flex flex-col justify-center items-center max-width-container ">
@@ -74,8 +56,10 @@ function SignupContainer() {
                     : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
                 }
               />
-              {/* <img src={accept} alt="" className={!errors.email ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
-                            <img src={close} alt="" className={errors.username ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
+              {/* <img src={accept} alt="" className={!errors.email ? 'error-icon |
+              absolute top-[35%] right-[5%]' : "hidden"} />
+        <img src={close} alt="" className={errors.username ? 'error-icon |
+        absolute top-[23%] right-[5%] ' : "hidden"} /> */}
               <div className={errors.email ? 'error mt-2' : 'hidden'}>
                 <p className="text-[#E04F5F] pl-[0.5rem]">{errors.email}</p>
               </div>
@@ -95,8 +79,10 @@ function SignupContainer() {
                 }
               />
 
-              {/* <img src={accept} alt="" className={!errors.password ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
-                            <img src={close} alt="" className={errors.password ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
+              {/* <img src={accept} alt="" className={!errors.password ? 'error-icon |
+               absolute top-[35%] right-[5%]' : "hidden"} />
+                            <img src={close} alt="" className={errors.password ?
+                            'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
               <div className={errors.password ? 'error mt-2' : 'hidden'}>
                 <p className="text-[#E04F5F] pl-[0.5rem]">{errors.password}</p>
               </div>
@@ -116,8 +102,10 @@ function SignupContainer() {
                 }
               />
               {/*
-                            <img src={accept} alt="" className={!errors.confirmPassword ? 'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
-                            <img src={close} alt="" className={errors.confirmPassword ? 'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
+                            <img src={accept} alt="" className={!errors.confirmPassword ?
+                              'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
+                            <img src={close} alt="" className={errors.confirmPassword ?
+                            'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
               <div className={errors.confirmPassword ? 'error mt-2' : 'hidden'}>
                 <p className="text-[#E04F5F] pl-[0.5rem]">
                   {errors.confirmPassword}
