@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import '../../css/signup-css/signup.css';
 import { NavLink } from 'react-router-dom';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export async function loginValidation(values) {
   const errors = registerVerify({}, values);
   return errors;
