@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
+// eslint-disable-next-line import/no-unresolved
 import { toast, ToastContainer } from 'react-toastify';
 import Navbar from '../general-componets/Navbar';
 import key from '../../images/key.svg';
