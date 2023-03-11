@@ -1,0 +1,21 @@
+
+@media (min-width: 48em) {
+    .desktop-sidebar-navigation a.active{
+    background-color: #ffc93c;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.desktop-sidebar-navigation a.active::after{
+    content: '';
+    position: absolute;
+    width: 10px;
+    background-color: #ffc93c;
+    right: 0;
+    margin-right: -4px;
+    border-radius: 20px 0px 0px 20px;
+    border: 1px solid black;
+    height: calc(1.5rem + 30px) ;
+    transition: all 500ms ease-in-out;
+}
+}

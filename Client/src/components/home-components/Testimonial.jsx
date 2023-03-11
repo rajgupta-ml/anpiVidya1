@@ -1,7 +1,5 @@
 import React from 'react';
 import '../../css/home-css/testimonial.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import avatar from '../../images/avatar.svg';
 
 function Testimonial() {
@@ -125,5 +123,4 @@ function Testimonial() {
     </div>
   );
 }
-AOS.init();
 export default Testimonial;

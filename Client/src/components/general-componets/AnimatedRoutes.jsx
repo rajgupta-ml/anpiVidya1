@@ -26,7 +26,6 @@ function AnimatedRoutes() {
           <Route path="/change-password/:id" element={<NewPassword />} />
           <Route path="/dashboard" element={<NewTeacherDashboard />} />
           <Route path="/classrooms" element={<Classroom />} />
-
         </Routes>
       </AnimatePresence>
     </div>

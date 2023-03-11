@@ -21,7 +21,9 @@ function LoginContainer() {
     validationSchema: loginValidationSchema,
     onSubmit: async (submitValues) => {
       try {
-        await loginEndpoint(submitValues);
+        const response = await loginEndpoint(submitValues);
+        localStorage.setItem('JWT_TOKEN', response.data.JWT_TOKEN);
+        naviagte('/dashboard');
         toast.success('Login Successfull');
       } catch (error) {
         if ((error.response.data.err) === 'User not found') {

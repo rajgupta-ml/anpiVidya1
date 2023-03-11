@@ -1,7 +1,5 @@
 import React from 'react';
 import '../../css/home-css/hero.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { NavLink } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Arrow from '../svg-componets/Arrow';
@@ -41,5 +39,4 @@ function Hero() {
     </div>
   );
 }
-AOS.init();
 export default Hero;
