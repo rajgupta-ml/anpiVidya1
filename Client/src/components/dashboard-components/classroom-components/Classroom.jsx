@@ -11,8 +11,22 @@ function Classroom() {
       <div className="hidden md:flex justify-center">
         <SideNavigation />
         {/* MID SECTION FOR DESKTOP */}
-        <section>
-          <div>Hello</div>
+        <section className="font-['poppins'] flex flex-col items-center gap-4 " style={{ width: 'calc(100vw - 250px)' }}>
+          <div className="bg-[#0079BC] w-[80%] rounded-[20px] my-8 ">
+            <div className="text-[#fff] font-bold text-[44px] my-8 px-8">CLASSROOMS</div>
+          </div>
+          <div className="bg-[#0079BC] flex flex-col gap-4 rounded-[20px] w-[80%]">
+            <div className="flex justify-between items-center p-4">
+              <div className="text-[#fff] text-[28px]">CURRENT CLASSROOMS</div>
+              <button type="button" className="bg-[#FFC100] p-4 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  ">NEW CLASSROOM +</button>
+            </div>
+            <div>
+              <div className="rounded-[20px] bg-[#fff] py-4 px-6 m-4">
+                <div className=" text-[36px]">DBMS</div>
+                <div className="text-[#0007] text-[18px] font-medium">MON-FRI | 12PM</div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
 
