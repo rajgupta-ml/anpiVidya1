@@ -12,7 +12,7 @@ import '../../../css/dashboard-css/sidebar-dashboard.css';
 function SideNavigation() {
   return (
     <main className="font-['poppins'] ">
-      <section className="bg-[#F0F5FB] w-[250px]  h-[100vh] flex flex-col justify-around items-center border-r-2 border-black">
+      <section className="bg-[#F0F5FB] w-[250px] h-[100vh] flex flex-col justify-between items-center border-r-2 border-black">
         <div className="flex flex-col justify-center items-center p-8 relative">
           <div className="bg-[#F0F5FB] w-[150px] rounded-full border-[1px] border-black flex justify-center items-center">
             <img className="w-[120px] rounded-full" src={avatar} alt="" />
@@ -20,7 +20,7 @@ function SideNavigation() {
           <div className="my-2 text-[24px]">RAJ GUPTA</div>
 
           {/* Side Navigation */}
-          <div className="desktop-sidebar-navigation | my-8 flex flex-col gap-4 ">
+          <div className="desktop-sidebar-navigation | flex flex-col gap-4 ">
             <NavLink to="/dashboard" className="flex gap-4 px-5 py-3 items-center">
               <img src={dashboard} alt="" />
               <div>Dashboard</div>
@@ -48,7 +48,7 @@ function SideNavigation() {
           <img src={logout} alt="" />
           <div>LOGOUT</div>
         </div>
-        <div className="opacity-[70%] ">v1.12</div>
+
       </section>
 
     </main>
