@@ -13,7 +13,6 @@ import Classroom from '../dashboard-components/classroom-components/Classroom';
 import CreateNewClassroom from '../dashboard-components/classroom-components/CreateNewClassroom';
 import Protected from '../protect-components/Protected';
 
-
 function AnimatedRoutes() {
   const location = useLocation();
   return (
