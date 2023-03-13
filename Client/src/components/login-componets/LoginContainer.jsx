@@ -24,6 +24,7 @@ function LoginContainer() {
         const response = await loginEndpoint(submitValues);
         localStorage.setItem('JWT_TOKEN', response.data.userData.JWT_TOKEN);
         localStorage.setItem('full_Name', response.data.userData.fullName);
+        localStorage.setItem('UCID_TOKEN', response.data.userData.UCID_TOKEN);
         naviagte('/dashboard');
         toast.success('Login Successfull');
       } catch (error) {

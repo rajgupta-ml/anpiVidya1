@@ -11,6 +11,6 @@ const validateUserInteractor = async (
   const userData = await validateUserPersistance({ email });
   await hashedPasswordMatch.ValidatePassword({ hashedPassword: userData.fetchedHashedPassword });
   const JWT_TOKEN = createJwt({ email, expirationDate: '1h' });
-  return { fullName: userData.fullName, JWT_TOKEN };
+  return { fullName: userData.fullName, JWT_TOKEN, UCID_TOKEN: userData.UCID_TOKEN };
 };
 export default validateUserInteractor;

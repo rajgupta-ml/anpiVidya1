@@ -9,7 +9,7 @@ function Protected(props) {
   useEffect(() => {
     validateProtectedPagesEndpoint().catch(() => {
       navaigate('/signup');
-    });
+    }, []);
   });
 
   return (
