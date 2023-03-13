@@ -10,6 +10,7 @@ import SuccessfullyEmailSent from '../login-componets/successfullyEmailSent';
 import NewPassword from '../login-componets/NewPassword';
 import NewTeacherDashboard from '../dashboard-components/teacher-dashboard-components/NewTeacherDashboard';
 import Classroom from '../dashboard-components/classroom-components/Classroom';
+import CreateClassroomPopup from '../dashboard-components/classroom-components/CreateClassroomPopup';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function AnimatedRoutes() {
           <Route path="/change-password/:id" element={<NewPassword />} />
           <Route path="/dashboard" element={<NewTeacherDashboard />} />
           <Route path="/classrooms" element={<Classroom />} />
+          <Route path="/create-classroom" element={<CreateClassroomPopup />} />
         </Routes>
       </AnimatePresence>
     </div>

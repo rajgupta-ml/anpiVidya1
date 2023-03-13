@@ -1,6 +1,15 @@
 import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema({
+  UCID_TOKEN: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  fullName: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     unique: [true, 'email already exist'],
@@ -14,8 +23,6 @@ const UserSchema = new Schema({
     required: [true, 'User Type is required'],
     select: false,
   },
-  resetPasswordToken: String,
-  resetPasswordExpire: Date,
 
 });
 

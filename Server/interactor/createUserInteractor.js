@@ -1,17 +1,27 @@
 // Bussiness Logic
 
 const createUserInteractor = async (
-  { CreateUserDataEntity, createUserPersistance, DataSanitizationEntity },
-  { email, password, userType },
+  {
+    CreateUserDataEntity, createUserPersistance, DataSanitizationEntity, cidTokenPersitance,
+  },
+  {
+    fullName, email, password, userType,
+  },
 ) => {
   const userData = new CreateUserDataEntity({ password });
-  const userDataSanitization = new DataSanitizationEntity({ email, password, userType });
+  const userDataSanitization = new DataSanitizationEntity({
+    fullName, email, password, userType,
+  });
   // Data is getting Sanitized
   userDataSanitization.userDataSanitization();
   // hashing the password
   const hashedPassword = await userData.hashPassword();
+  // Creating a UCID for identification of an user
+  const UCID_TOKEN = cidTokenPersitance({ email });
   // saving the password to DB
-  await createUserPersistance({ email, password: hashedPassword, userType });
+  await createUserPersistance({
+    UCID_TOKEN, fullName, email, password: hashedPassword, userType,
+  });
 };
 
 export default createUserInteractor;

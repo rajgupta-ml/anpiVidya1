@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import TopNav from '../general-components/TopNav';
 import BottomNavigation from '../general-components/BottomNavigation';
 import SideNavigation from '../general-components/SideNavigation';
 
 function NewTeacherDashboard() {
+  const navigate = useNavigate();
   return (
     <main className=" flex flex-col md:flex-row ">
       <TopNav />
@@ -15,7 +17,14 @@ function NewTeacherDashboard() {
           <div className="flex flex-col justify-center items-center p-8 m-8  bg-[#0079BC] rounded-[20px]" style={{ width: 'min(100% - 10rem, 710px)', height: 'min(100% - 20rem, 460px)' }}>
             <div className=" rounded-full text-[50px] font-bold text-[#fff] ">WELCOME, RAJ GUPTA</div>
             <div className=" rounded-full text-[24px] text-[#fff] ">CREATE A NEW CLASSROOM</div>
-            <button type="button" className="bg-[#FFC100] px-4 py-3 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center mt-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">NEW CLASSROOM +</button>
+            <button
+              onClick={() => navigate('/create-classroom')}
+              type="button"
+              className="bg-[#FFC100] px-4 py-3 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center mt-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"
+            >
+              NEW CLASSROOM +
+
+            </button>
 
           </div>
         </section>

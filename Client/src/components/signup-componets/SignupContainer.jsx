@@ -16,6 +16,7 @@ function SignupContainer() {
     setArrowOpen(!arrowOpen);
   };
   const initialValues = {
+    fullName: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -53,6 +54,24 @@ function SignupContainer() {
           <div className="input-fields | flex flex-col gap-4 ">
             <div className="relative">
               <input
+                values={values.fullName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="fullName"
+                type="text"
+                placeholder="Enter your Full Name"
+                className={
+                  errors.fullName
+                    ? 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                    : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                }
+              />
+              <div className={errors.fullName ? 'error | absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">{errors.fullName}</p>
+              </div>
+            </div>
+            <div className="relative">
+              <input
                 values={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -65,10 +84,6 @@ function SignupContainer() {
                     : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
                 }
               />
-              {/* <img src={accept} alt="" className={!errors.email ? 'error-icon |
-              absolute top-[35%] right-[5%]' : "hidden"} />
-        <img src={close} alt="" className={errors.username ? 'error-icon |
-        absolute top-[23%] right-[5%] ' : "hidden"} /> */}
               <div className={errors.email ? 'error | absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
                 <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">{errors.email}</p>
               </div>
