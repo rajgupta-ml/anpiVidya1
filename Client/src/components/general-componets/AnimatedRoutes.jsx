@@ -13,7 +13,6 @@ import Classroom from '../dashboard-components/classroom-components/Classroom';
 import CreateNewClassroom from '../dashboard-components/classroom-components/CreateNewClassroom';
 import Protected from '../protect-components/Protected';
 
-
 function AnimatedRoutes() {
   const location = useLocation();
   return (
@@ -29,7 +28,7 @@ function AnimatedRoutes() {
           <Route path="/change-password/:id" element={<NewPassword />} />
           <Route path="/dashboard" element={<Protected Components={NewTeacherDashboard} />} />
           <Route path="/classrooms" element={<Protected Components={Classroom} />} />
-          <Route path="/create-classroom" element={<Protected Components={<CreateNewClassroom />} />} />
+          <Route path="/create-classroom" element={<Protected Components={CreateNewClassroom} />} />
         </Routes>
       </AnimatePresence>
     </div>

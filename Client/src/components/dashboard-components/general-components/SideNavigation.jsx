@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import avatar from '../../../images/avatar.svg';
 import classroom from '../../../images/classroom.svg';
 import ainotes from '../../../images/ainotes.svg';
@@ -9,7 +9,12 @@ import dashboard from '../../../images/dashboard.svg';
 import logout from '../../../images/logout.svg';
 import '../../../css/dashboard-css/sidebar-dashboard.css';
 
+function handleLogout(navigate) {
+  localStorage.clear();
+  navigate('/');
+}
 function SideNavigation() {
+  const navigate = useNavigate();
   return (
     <main className="font-['poppins'] ">
       <section className="bg-[#F0F5FB] w-[250px] h-[100vh] flex flex-col justify-between items-center border-r-2 border-black">
@@ -44,10 +49,14 @@ function SideNavigation() {
           </div>
         </div>
 
-        <div className="flex justify-center gap-2 bg-[#ffc93c] p-4 border-y-[1px] border-black cursor-pointer w-[100%] ">
+        <button
+          onClick={() => handleLogout(navigate)}
+          type="button"
+          className="flex justify-center gap-2 bg-[#ffc93c] p-4 border-y-[1px] border-black cursor-pointer w-[100%] "
+        >
           <img src={logout} alt="" />
           <div>LOGOUT</div>
-        </div>
+        </button>
 
       </section>
 

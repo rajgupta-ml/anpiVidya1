@@ -22,6 +22,7 @@ const registerUsers = async (request, response) => {
     );
     response.status(200).json({ success: 'true' });
   } catch (error) {
+    console.log(error);
     response.status(401).json({
       success: 'false',
       err: error.message,

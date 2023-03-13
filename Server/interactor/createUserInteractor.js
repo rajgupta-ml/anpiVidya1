@@ -18,6 +18,7 @@ const createUserInteractor = async (
   const hashedPassword = await userData.hashPassword();
   // Creating a UCID for identification of an user
   const UCID_TOKEN = cidTokenPersitance({ email });
+
   // saving the password to DB
   await createUserPersistance({
     UCID_TOKEN, fullName, email, password: hashedPassword, userType,
