@@ -14,7 +14,7 @@ import validateChangePasswordTokenController from './controller/validateChangePa
 import validateProtectedPagesController from './controller/validateProtectedPagesController.js';
 
 const AUTH_PATH = '/api/auth/';
-const VALIDATE_ROUTE = '/api/validate';
+const VALIDATE_ROUTE = '/api/validate/';
 
 // Config for the path of .env file
 dotenv.config({ path: '../server/hidden/.env' });

@@ -11,6 +11,7 @@ import NewPassword from '../login-componets/NewPassword';
 import NewTeacherDashboard from '../dashboard-components/teacher-dashboard-components/NewTeacherDashboard';
 import Classroom from '../dashboard-components/classroom-components/Classroom';
 import CreateClassroomPopup from '../dashboard-components/classroom-components/CreateClassroomPopup';
+import Protected from '../protect-components/Protected';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -25,9 +26,9 @@ function AnimatedRoutes() {
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/successfully-email-sent" element={<SuccessfullyEmailSent />} />
           <Route path="/change-password/:id" element={<NewPassword />} />
-          <Route path="/dashboard" element={<NewTeacherDashboard />} />
-          <Route path="/classrooms" element={<Classroom />} />
-          <Route path="/create-classroom" element={<CreateClassroomPopup />} />
+          <Route path="/dashboard" element={<Protected Components={NewTeacherDashboard} />} />
+          <Route path="/classrooms" element={<Protected Components={Classroom} />} />
+          <Route path="/create-classroom" element={<Protected Components={CreateClassroomPopup} />} />
         </Routes>
       </AnimatePresence>
     </div>
