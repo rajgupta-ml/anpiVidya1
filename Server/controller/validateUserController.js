@@ -8,13 +8,13 @@ import DataSanitizationEntity from '../entity/dataSanitizationEnitity.js';
 const validateUserController = async (request, response) => {
   const { email, password } = request.body;
   try {
-    const JWT_TOKEN = await validateUserInteractor(
+    const userData = await validateUserInteractor(
       {
         ValidateUserDataEntity, validateUserPersistance, createJwt, DataSanitizationEntity,
       },
       { email, password },
     );
-    response.status(200).json({ success: 'true', JWT_TOKEN });
+    response.status(200).json({ success: 'true', userData });
   } catch (error) {
     response.status(400).json({
       success: 'false',

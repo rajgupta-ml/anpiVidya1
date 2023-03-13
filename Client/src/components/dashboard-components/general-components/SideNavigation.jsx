@@ -17,7 +17,7 @@ function SideNavigation() {
           <div className="bg-[#F0F5FB] w-[150px] rounded-full border-[1px] border-black flex justify-center items-center">
             <img className="w-[120px] rounded-full" src={avatar} alt="" />
           </div>
-          <div className="my-2 text-[24px]">RAJ GUPTA</div>
+          <div className="my-2 text-[24px] capitalize">{localStorage.getItem('full_Name')}</div>
 
           {/* Side Navigation */}
           <div className="desktop-sidebar-navigation | flex flex-col gap-4 ">

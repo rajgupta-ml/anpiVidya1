@@ -2,7 +2,7 @@
 import validateJwtPersistance from '../persistance/vaildateJwtPersistance.js';
 import validateProctectedPageInteractor from '../interactor/validateProtectedPagesInteractor.js';
 
-const validateProtectedPages = (request, response) => {
+const validateProtectedPagesController = (request, response) => {
   const JWT_TOKEN = request.headers.authorization.split(' ')[1];
   try {
     validateProctectedPageInteractor({ validateJwtPersistance }, { JWT_TOKEN });
@@ -16,4 +16,4 @@ const validateProtectedPages = (request, response) => {
   }
 };
 
-export default validateProtectedPages;
+export default validateProtectedPagesController;

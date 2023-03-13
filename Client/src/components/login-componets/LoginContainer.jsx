@@ -22,7 +22,8 @@ function LoginContainer() {
     onSubmit: async (submitValues) => {
       try {
         const response = await loginEndpoint(submitValues);
-        localStorage.setItem('JWT_TOKEN', response.data.JWT_TOKEN);
+        localStorage.setItem('JWT_TOKEN', response.data.userData.JWT_TOKEN);
+        localStorage.setItem('full_Name', response.data.userData.fullName);
         naviagte('/dashboard');
         toast.success('Login Successfull');
       } catch (error) {

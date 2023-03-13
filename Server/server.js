@@ -11,9 +11,10 @@ import connectDB from './config/db.js';
 import validateUserController from './controller/validateUserController.js';
 import createChangePasswordTokenController from './controller/createChangePasswordTokenController.js';
 import validateChangePasswordTokenController from './controller/validateChangePasswordTokenController.js';
-import validateProtectedPages from './controller/validateProtectedPagesController.js';
+import validateProtectedPagesController from './controller/validateProtectedPagesController.js';
 
 const AUTH_PATH = '/api/auth/';
+const VALIDATE_ROUTE = '/api/validate';
 
 // Config for the path of .env file
 dotenv.config({ path: '../server/hidden/.env' });
@@ -31,7 +32,7 @@ app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
 app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);
 // connect it to the FRONT END
-app.get(`${AUTH_PATH}validate-protected-pages`, validateProtectedPages);
+app.get(`${VALIDATE_ROUTE}validate-protected-pages`, validateProtectedPagesController);
 // ------------------------------
 app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
 // Starting the server
