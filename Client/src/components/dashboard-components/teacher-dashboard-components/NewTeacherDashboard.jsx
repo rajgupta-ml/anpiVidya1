@@ -8,7 +8,7 @@ function NewTeacherDashboard() {
   const navigate = useNavigate();
   return (
     <main className=" flex flex-col md:flex-row ">
-      <TopNav />
+      <TopNav title="DASHBOARD" />
       <div className="hidden md:flex justify-center">
         <SideNavigation />
         {/* MIDDLE SECTION FOR DESKTOP */}
