@@ -11,7 +11,7 @@ function Chat() {
       <div className="hidden md:flex justify-center">
         <SideNavigation />
         {/* MID SECTION FOR DESKTOP */}
-        <section className="font-['poppins'] flex flex-col items-center gap-4 " style={{ width: 'calc(100vw - 250px)' }}>
+        <section className="font-['poppins'] flex flex-col items-center gap-4 ml-[250px]" style={{ width: 'calc(100vw - 280px)' }}>
           <div className="bg-[#0079BC] w-[80%] rounded-[20px] my-8 ">
             <div className="text-[#fff] font-bold text-[44px] my-8 px-8">Student Chat</div>
           </div>

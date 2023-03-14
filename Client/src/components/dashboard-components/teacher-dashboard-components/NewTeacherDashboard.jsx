@@ -12,9 +12,9 @@ function NewTeacherDashboard() {
       <div className="hidden md:flex justify-center">
         <SideNavigation />
         {/* MIDDLE SECTION FOR DESKTOP */}
-        <section className="font-['poppins'] flex flex-col justify-center items-center " style={{ width: 'calc(100vw - 250px)' }}>
+        <section className="font-['poppins'] flex flex-col justify-center items-center ml-[250px] h-[100vh]" style={{ width: 'calc(100vw - 280px)' }}>
 
-          <div className="flex flex-col justify-center items-center p-8 m-8  bg-[#0079BC] rounded-[20px] drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  " style={{ width: 'min(100% - 10rem, 710px)', height: 'min(100% - 20rem, 460px)' }}>
+          <div className="flex flex-col justify-center items-center p-8 m-8  bg-[#0079BC] rounded-[20px] drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  " style={{ width: 'min(100% - 5rem , 710px)', height: 'min(100% - 5rem ,460px' }}>
             <div className=" rounded-full text-[50px] font-bold text-[#fff] capitalize">
               WELCOME,
               {' '}
