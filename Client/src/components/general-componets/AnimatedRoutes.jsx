@@ -12,6 +12,7 @@ import NewTeacherDashboard from '../dashboard-components/teacher-dashboard-compo
 import Classroom from '../dashboard-components/classroom-components/Classroom';
 import CreateNewClassroom from '../dashboard-components/classroom-components/CreateNewClassroom';
 import Protected from '../protect-components/Protected';
+import Chat from '../dashboard-components/chat-component/Chat';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function AnimatedRoutes() {
           <Route path="/dashboard" element={<Protected Components={NewTeacherDashboard} />} />
           <Route path="/classrooms" element={<Protected Components={Classroom} />} />
           <Route path="/create-classroom" element={<Protected Components={CreateNewClassroom} />} />
+          <Route path="/chats" element={<Protected Components={Chat} />} />
         </Routes>
       </AnimatePresence>
     </div>
