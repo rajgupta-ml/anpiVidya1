@@ -10,9 +10,9 @@ function CreateNewClassroom() {
       <div className="hidden md:flex justify-center">
         <SideNavigation />
         {/* MIDDLE SECTION FOR DESKTOP */}
-        <section className="font-['poppins'] flex flex-col justify-center items-center " style={{ width: 'calc(100vw - 250px)' }}>
+        <section className="font-['poppins'] flex flex-col justify-center items-center ml-[250px] h-[100vh]" style={{ width: 'calc(100vw - 280px)' }}>
 
-          <div className="flex flex-col justify-center items-center p-8 m-8 gap-4 bg-[#0079BC] rounded-[20px] w-[50%]">
+          <div className="flex flex-col justify-center items-center p-8 m-8 gap-4 bg-[#0079BC] rounded-[20px]" style={{ width: 'min(100% - 5rem , 710px)', height: 'min(100% - 5rem ,460px' }}>
             <div className="rounded-[10px] text-[18px] text-[#fff] bg-[#0081C9] flex justify-center items-center p-4 w-full ">
               <div className="w-full flex justify-center items-center">CREATE A CLASSROOM</div>
             </div>
