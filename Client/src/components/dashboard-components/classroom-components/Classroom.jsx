@@ -4,7 +4,7 @@ import TopNav from '../general-components/TopNav';
 import SideNavigation from '../general-components/SideNavigation';
 import BottomNavigation from '../general-components/BottomNavigation';
 import ClassroomCard from './ClassroomCard';
-import ClassroomImg from '../../../images/classroom.svg';
+import ClassroomImg from '../../../images/classroomwhite.svg';
 
 function Classroom() {
   const navigate = useNavigate();
