@@ -26,9 +26,11 @@ function Classroom() {
               <div className="text-[#fff] text-[28px]">CURRENT CLASSROOMS</div>
               <button type="button" onClick={() => navigate('/create-classroom')} className="bg-[#FFC100] p-4 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  ">NEW CLASSROOM +</button>
             </div>
-            <div>
+            <div className="grid grid-cols-3 gap-[1.5rem] px-4">
               <ClassroomCard subject="DBMS" days="MON-FRI" time="9AM" />
-              <ClassroomCard subject="DATA MINING" days="WED-SAT" time="12PM" />
+              <ClassroomCard subject="NETWORKS" days="WED-SAT" time="12PM" />
+              <ClassroomCard subject="NETWORKS" days="WED-SAT" time="12PM" />
+              <ClassroomCard subject="NETWORKS" days="WED-SAT" time="12PM" />
 
             </div>
           </div>
