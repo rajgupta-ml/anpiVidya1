@@ -19,6 +19,9 @@ const UserSchema = new Schema({
     type: String,
     required: [true, 'Password is required'],
   },
+  institution: {
+    type: String,
+  },
   userType: {
     type: String,
     required: [true, 'User Type is required'],

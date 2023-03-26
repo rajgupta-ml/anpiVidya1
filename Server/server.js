@@ -12,10 +12,12 @@ import connectDB from './config/db.js';
 import validateUserController from './controller/validateUserController.js';
 import createChangePasswordTokenController from './controller/createChangePasswordTokenController.js';
 import validateChangePasswordTokenController from './controller/validateChangePasswordTokenController.js';
-import validateProtectedPagesController from './controller/validateProtectedPagesController.js';
+import validateServicesController from './controller/validateServicesController.js';
+import suggestionSystemController from './controller/suggestionSystemController.js';
 
 const AUTH_PATH = '/api/auth/';
-const VALIDATE_ROUTE = '/api/validate/';
+const VALIDATE_PATH = '/api/validate/';
+const CLASROOM_PATH = '/api/classrom/';
 
 // Config for the path of .env file
 dotenv.config({ path: '../server/hidden/.env' });
@@ -47,9 +49,9 @@ console.log(response.data.choices[0].text);
 app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
 app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);
-// connect it to the FRONT END
-app.get(`${VALIDATE_ROUTE}validate-protected-pages`, validateProtectedPagesController);
-// ------------------------------
+app.post(`${CLASROOM_PATH}invite-link-suggestion`, suggestionSystemController);
+app.get(`${VALIDATE_PATH}validate-protected-pages`, validateServicesController);
+
 app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
 // Starting the server
 app.listen(PORT, () => {

@@ -19,6 +19,7 @@ function SignupContainer() {
     email: '',
     password: '',
     confirmPassword: '',
+    institution: '',
     userType: '',
   };
   const {
@@ -110,6 +111,32 @@ function SignupContainer() {
                 <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">{errors.password}</p>
               </div>
             </div>
+            <div className="relative">
+              <input
+                values={values.institution}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                name="institution"
+                type="text"
+                placeholder="Enter your instiuttion"
+                className={
+                  errors.institution
+                    ? 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                    : 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#4BAE4F]  text-black text-[1.25rem] outline-none md:w-[495px]'
+                }
+              />
+              {/*
+                            <img src={accept} alt="" className={!errors.institution ?
+                              'error-icon | absolute top-[35%] right-[5%]' : "hidden"} />
+                            <img src={close} alt="" className={errors.institution ?
+                            'error-icon | absolute top-[23%] right-[5%] ' : "hidden"} /> */}
+              <div className={errors.institution ? 'error | absolute bottom-0 right-0 mr-3 mb-2' : 'hidden'}>
+                <p className="text-[#E04F5F] pl-[0.5rem] font-[poppins] text-xs capitalize">
+                  {errors.institution}
+                </p>
+              </div>
+            </div>
+
             <div className="relative">
               <input
                 values={values.confirmPassword}

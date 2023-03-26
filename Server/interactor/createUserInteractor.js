@@ -5,7 +5,7 @@ const createUserInteractor = async (
     CreateUserDataEntity, createUserPersistance, DataSanitizationEntity, cidTokenPersitance,
   },
   {
-    fullName, email, password, userType,
+    fullName, email, password, institution, userType,
   },
 ) => {
   const userData = new CreateUserDataEntity({ password });
@@ -21,7 +21,7 @@ const createUserInteractor = async (
 
   // saving the password to DB
   await createUserPersistance({
-    UCID_TOKEN, fullName, email, password: hashedPassword, userType,
+    UCID_TOKEN, fullName, email, institution, password: hashedPassword, userType,
   });
 };
 

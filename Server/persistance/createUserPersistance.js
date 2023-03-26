@@ -2,10 +2,10 @@
 import UserSchema from '../models/User.js';
 
 const createUserPersistance = async ({
-  UCID_TOKEN, fullName, email, password, userType,
+  UCID_TOKEN, fullName, email, institution, password, userType,
 }) => {
   const User = new UserSchema({
-    UCID_TOKEN, fullName, email, password, userType,
+    UCID_TOKEN, fullName, email, institution, password, userType,
   });
   await User.save();
 };
