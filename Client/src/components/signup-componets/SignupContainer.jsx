@@ -5,7 +5,6 @@ import { useFormik } from 'formik';
 import { toast, ToastContainer } from 'react-toastify';
 import arrow from '../../images/dropdownarrow.png';
 import { registerValidationSchema } from '../../helper/validate';
-import Monkey from '../svg-componets/Monkey';
 import registrationEndpoint from '../../apiendpoints/registrationEndpoint';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -48,8 +47,8 @@ function SignupContainer() {
     <div>
       <div className="signup-container | flex flex-col justify-center items-center max-width-container ">
         <form className="signup-form " onSubmit={handleSubmit}>
-          <div className="flex justify-center mb-[20px] ">
-            <Monkey />
+          <div className="flex justify-center mb-[20px] text-[5rem] text-[#fff] ">
+            SIGNUP
           </div>
 
           <div className="input-fields | flex flex-col gap-4 ">

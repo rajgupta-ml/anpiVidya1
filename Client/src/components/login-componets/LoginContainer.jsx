@@ -4,7 +4,6 @@ import '../../css/login-css/login.css';
 import { useFormik } from 'formik';
 import { toast, ToastContainer } from 'react-toastify';
 import { loginValidationSchema } from '../../helper/validate';
-import Monkey from '../svg-componets/Monkey';
 import loginEndpoint from '../../apiendpoints/loginEndpoint';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -43,15 +42,15 @@ function LoginContainer() {
   });
   return (
 
-    <div className="mt-[4rem]">
+    <div className="">
       <div className="login-container | gap-[4.25rem] max-width-container">
         <form
           action="#"
           className="login-form | bg-[#0079BC] p-2 max-w-[720px] w-full flex flex-col items-center"
           onSubmit={handleSubmit}
         >
-          <div className="flex justify-center mb-[20px]">
-            <Monkey />
+          <div className="flex justify-center mb-[20px] text-[5rem] text-[#fff] ">
+            LOGIN
           </div>
 
           <div className="input-fields | flex flex-col gap-4 ">

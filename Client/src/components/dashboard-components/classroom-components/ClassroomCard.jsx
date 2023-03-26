@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import avatar from '../../../images/avatar-group.svg';
+import threedots from '../../../images/threedots.svg';
+// import ProfileMenu from '../general-components/ProfileMenu';
 
 function ClassroomCard(props) {
   const { subject, days, time } = props;
+  const [showMenu, setShowMenu] = useState(false);
+  const handleMenuToggle = () => {
+    setShowMenu(!showMenu);
+  };
   return (
     <main>
       {/* Classroom card for mobile */}
@@ -17,24 +23,42 @@ function ClassroomCard(props) {
       </div>
 
       {/* Classroom card for desktop */}
-      <div className="hidden md:flex">
-        {' '}
-        <div className="rounded-[20px] bg-[#fff] py-4 px-6 m-4 w-full flex justify-between items-center">
-          <div>
-            {' '}
-            <div className=" text-[36px]">{subject}</div>
-            <div className="text-[#0007] text-[18px] font-medium">
+      <div className="hidden md:flex flex-col rounded-[20px] bg-[#fff] justify-between items-start h-[16rem] p-4">
+        <div className="flex justify-between items-center w-full">
+          <p className="text-[#fff] text-[2rem] font-bold w-[4rem] aspect-square rounded-[20px] bg-[#0079BC] grid place-content-center">{subject[0]}</p>
+          <div className="flex flex-col">
+            <div className="text-[1.5rem]">{subject}</div>
+            <div className="text-[#0007] text-[12px]">
               {days}
-        &nbsp;|&nbsp;
+              &nbsp;|&nbsp;
               {time}
             </div>
           </div>
-          <div className="flex mr-6">
+          <div className="relative">
+            <img onClick={handleMenuToggle} role="presentation" src={threedots} alt="" />
+            {showMenu
+          && (
+          <div className="absolute ml-[-50px] mt-[10px] border-[0.5px] border-black bg-[#F0F5FB] w-[100px] p-4 flex flex-col gap-2">
+            <div className="cursor-pointer hover:bg-[#BFD4E2] w-full">DELETE</div>
+            <div className="cursor-pointer hover:bg-[#BFD4E2] w-full">EDIT</div>
+          </div>
+          ) }
+          </div>
+        </div>
+
+        <div className="flex justify-between w-full items-center text-[12px]">
+          <div className="rounded-[6px] bg-[#E1D0FE] px-4 py-[4px] text-[#BF9DFF] font-bold">TAG</div>
+          <div className="border-[1px] rounded-[6px] border-[#ff0000] px-2 py-[4px] text-[#ff0000]">HIGH PRIORITY</div>
+        </div>
+        <div className="flex justify-between w-full">
+          <div className="bg-[#BFD4E2] rounded-[6px] px-4 py-2 text-[#2A709F] font-bold text-[12px] text-center">DUE DATE: 20/03/23</div>
+          <div className="flex">
             <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
             <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
             <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
           </div>
         </div>
+
       </div>
 
     </main>
