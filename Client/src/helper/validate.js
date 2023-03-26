@@ -21,6 +21,7 @@ export const registerValidationSchema = Yup.object().shape({
     })
     .required('Confirm Password Required'),
   userType: Yup.string().required('UserType is required'),
+  institution: Yup.string().required('instution Required'),
 });
 
 export const loginValidationSchema = Yup.object().shape({

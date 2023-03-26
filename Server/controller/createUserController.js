@@ -8,7 +8,7 @@ import cidTokenPersitance from '../persistance/cidTokenPersitance.js';
 
 const registerUsers = async (request, response) => {
   const {
-    fullName, email, password, userType,
+    fullName, email, password, institution, userType,
   } = request.body;
 
   try {
@@ -17,12 +17,11 @@ const registerUsers = async (request, response) => {
         CreateUserDataEntity, createUserPersistance, DataSanitizationEntity, cidTokenPersitance,
       },
       {
-        fullName, email, password, userType,
+        fullName, email, password, institution, userType,
       },
     );
     response.status(200).json({ success: 'true' });
   } catch (error) {
-    console.log(error);
     response.status(401).json({
       success: 'false',
       err: error.message,
