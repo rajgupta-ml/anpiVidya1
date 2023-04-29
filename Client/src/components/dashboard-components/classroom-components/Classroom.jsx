@@ -29,8 +29,8 @@ function Classroom() {
             <div className="grid grid-cols-3 gap-[1.5rem] px-4">
               <ClassroomCard subject="DBMS" days="MON-FRI" time="9AM" />
               <ClassroomCard subject="NETWORKS" days="WED-SAT" time="12PM" />
-              <ClassroomCard subject="NETWORKS" days="WED-SAT" time="12PM" />
-              <ClassroomCard subject="NETWORKS" days="WED-SAT" time="12PM" />
+              <ClassroomCard subject="WEB DEVELOPMENT" days="WED-SAT" time="12PM" />
+              <ClassroomCard subject="COMPUTER NETWORKS" days="WED-SAT" time="12PM" />
             </div>
           </div>
         </section>
