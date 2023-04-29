@@ -15,6 +15,7 @@ import Protected from '../protect-components/Protected';
 import Chat from '../dashboard-components/chat-component/Chat';
 import Report from '../dashboard-components/general-components/Report';
 import Notes from '../dashboard-components/notes-components/Notes';
+import InsideClassroom from '../dashboard-components/classroom-components/InsideClassroom';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function AnimatedRoutes() {
           <Route path="/chats" element={<Protected Components={Chat} />} />
           <Route path="/report" element={<Report />} />
           <Route path="/ai-notes" element={<Notes />} />
+          <Route path="/classroom/:id" element={<Protected Components={InsideClassroom} />} />
 
         </Routes>
       </AnimatePresence>
