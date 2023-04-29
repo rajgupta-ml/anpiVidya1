@@ -13,11 +13,12 @@ import createChangePasswordTokenController from './controller/createChangePasswo
 import validateChangePasswordTokenController from './controller/validateChangePasswordTokenController.js';
 import validateServicesController from './controller/validateServicesController.js';
 import suggestionSystemController from './controller/suggestionSystemController.js';
+import smartNotesController from './controller/smartNotesController.js';
 
 const AUTH_PATH = '/api/auth/';
 const VALIDATE_PATH = '/api/validate/';
 const CLASROOM_PATH = '/api/classrom/';
-
+const NOTES_PATH = '/api/notes/';
 // Config for the path of .env file
 dotenv.config({ path: '../server/hidden/.env' });
 
@@ -30,6 +31,7 @@ connectDB();
 
 const PORT = process.env.PORT ?? 5000;
 
+app.post(`${NOTES_PATH}smartnotes`, smartNotesController);
 app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
 app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);

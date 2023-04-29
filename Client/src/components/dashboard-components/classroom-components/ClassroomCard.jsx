@@ -14,7 +14,7 @@ function ClassroomCard(props) {
     <main>
       {/* Classroom card for mobile */}
       <div className="rounded-[20px]  bg-[#fff] p-4 md:hidden">
-        <div className="text-[18px] text-[#000] font-medium">{subject}</div>
+        <div title={subject} className="text-[18px] text-[#000] font-medium">{subject.length > 15 ? `${subject.substring(0, 15)}...` : subject}</div>
         <div className="text-[10px] text-[#0007]">
           {days}
         &nbsp;|&nbsp;
@@ -27,14 +27,14 @@ function ClassroomCard(props) {
         <div className="flex justify-between items-center w-full">
           <p className="text-[#fff] text-[2rem] font-bold w-[4rem] aspect-square rounded-[20px] bg-[#0079BC] grid place-content-center">{subject[0]}</p>
           <div className="flex flex-col">
-            <div className="text-[1.5rem]">{subject}</div>
+            <div title={subject} className="text-[1.5rem]">{subject.length > 8 ? `${subject.substring(0, 8)}...` : subject}</div>
             <div className="text-[#0007] text-[12px]">
               {days}
               &nbsp;|&nbsp;
               {time}
             </div>
           </div>
-          <div className="relative">
+          <div className="relative cursor-pointer">
             <img onClick={handleMenuToggle} role="presentation" src={threedots} alt="" />
             {showMenu
           && (
