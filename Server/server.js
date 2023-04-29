@@ -6,7 +6,6 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
-import { Configuration, OpenAIApi } from 'openai';
 import createUserController from './controller/createUserController.js';
 import connectDB from './config/db.js';
 import validateUserController from './controller/validateUserController.js';
@@ -14,11 +13,12 @@ import createChangePasswordTokenController from './controller/createChangePasswo
 import validateChangePasswordTokenController from './controller/validateChangePasswordTokenController.js';
 import validateServicesController from './controller/validateServicesController.js';
 import suggestionSystemController from './controller/suggestionSystemController.js';
+import smartNotesController from './controller/smartNotesController.js';
 
 const AUTH_PATH = '/api/auth/';
 const VALIDATE_PATH = '/api/validate/';
 const CLASROOM_PATH = '/api/classrom/';
-
+const NOTES_PATH = '/api/notes/';
 // Config for the path of .env file
 dotenv.config({ path: '../server/hidden/.env' });
 
@@ -31,21 +31,7 @@ connectDB();
 
 const PORT = process.env.PORT ?? 5000;
 
-const configuration = new Configuration({
-  apiKey: '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',
-});
-const openai = new OpenAIApi(configuration);
-
-const response = await openai.createCompletion({
-  model: 'text-davinci-003',
-  prompt: 'What is distributed dbms',
-  temperature: 0,
-  max_tokens: 256,
-  top_p: 1,
-  frequency_penalty: 0,
-  presence_penalty: 0,
-});
-console.log(response.data.choices[0].text);
+app.post(`${NOTES_PATH}smartnotes`, smartNotesController);
 app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
 app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);

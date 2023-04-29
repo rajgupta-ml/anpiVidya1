@@ -12,7 +12,7 @@ function Footer() {
 
       <div className="footer | flex max-width-container text-white">
         <div className="left-content | w-[50%]">
-          <div className="text-7xl break-words mt-24"><h1>Let&npos;s build better people together</h1></div>
+          <div className="text-7xl break-words mt-24"><h1>Let&apos;s build better people together</h1></div>
           <div className="social-icons | flex mt-12 gap-12 mb-24">
             <img className="cursor-pointer" src={insta} alt="" />
             <img className="cursor-pointer" src={fb} alt="" />
