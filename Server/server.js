@@ -12,12 +12,10 @@ import validateUserController from './controller/validateUserController.js';
 import createChangePasswordTokenController from './controller/createChangePasswordTokenController.js';
 import validateChangePasswordTokenController from './controller/validateChangePasswordTokenController.js';
 import validateServicesController from './controller/validateServicesController.js';
-import suggestionSystemController from './controller/suggestionSystemController.js';
 import smartNotesController from './controller/smartNotesController.js';
 
 const AUTH_PATH = '/api/auth/';
 const VALIDATE_PATH = '/api/validate/';
-const CLASROOM_PATH = '/api/classrom/';
 const NOTES_PATH = '/api/notes/';
 // Config for the path of .env file
 dotenv.config({ path: '../server/hidden/.env' });
@@ -35,7 +33,6 @@ app.post(`${NOTES_PATH}smartnotes`, smartNotesController);
 app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
 app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);
-app.post(`${CLASROOM_PATH}invite-link-suggestion`, suggestionSystemController);
 app.get(`${VALIDATE_PATH}validate-protected-pages`, validateServicesController);
 
 app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
