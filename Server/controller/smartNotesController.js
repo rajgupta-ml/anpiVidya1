@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi } from 'openai';
 async function smartNotesController(req, res) {
   const { inputNote } = req.body;
   const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: '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',
   });
   const openai = new OpenAIApi(configuration);
 
