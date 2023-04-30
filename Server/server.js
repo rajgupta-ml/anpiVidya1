@@ -15,6 +15,8 @@ import validateServicesController from './controller/validateServicesController.
 import smartNotesController from './controller/smartNotesController.js';
 import createClassroomController from './controller/createClassroomController.js';
 import getClassroomController from './controller/getClassroomController.js';
+import createMeetingController from './controller/createMeetingController.js';
+import getClassroomsDataController from './controller/getClassroomsDataController.js';
 
 const AUTH_PATH = '/api/auth/';
 const VALIDATE_PATH = '/api/validate/';
@@ -37,9 +39,10 @@ app.post(`${AUTH_PATH}register`, createUserController);
 app.post(`${AUTH_PATH}login`, validateUserController);
 app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);
 app.post(`${CLASSROOM_PATH}create-classroom`, createClassroomController);
+app.post(`${CLASSROOM_PATH}create-meeting`, createMeetingController);
 app.get(`${VALIDATE_PATH}validate-protected-pages`, validateServicesController);
 app.get(`${CLASSROOM_PATH}get-classroom-data`, getClassroomController);
-
+app.get(`${CLASSROOM_PATH}get-classrooms-data`, getClassroomsDataController);
 app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
 // Starting the server
 app.listen(PORT, () => {
