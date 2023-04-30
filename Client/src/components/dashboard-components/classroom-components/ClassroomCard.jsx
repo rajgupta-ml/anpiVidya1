@@ -1,14 +1,26 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import avatar from '../../../images/avatar-group.svg';
 import threedots from '../../../images/threedots.svg';
 // import ProfileMenu from '../general-components/ProfileMenu';
 
 function ClassroomCard(props) {
-  const { subject, days, time } = props;
+  const navigate = useNavigate();
+  const {
+    subject, days, time, CLID,
+  } = props;
   const [showMenu, setShowMenu] = useState(false);
   const handleMenuToggle = () => {
     setShowMenu(!showMenu);
+  };
+
+  const handleOpenClassroom = (e) => {
+    e.preventDefault();
+    navigate(`/classroom/${CLID}`);
   };
   return (
     <main>
@@ -23,7 +35,7 @@ function ClassroomCard(props) {
       </div>
 
       {/* Classroom card for desktop */}
-      <div className="hidden md:flex flex-col rounded-[20px] bg-[#fff] justify-between items-start h-[16rem] p-4">
+      <div className="hidden md:flex flex-col rounded-[20px] bg-[#fff] justify-between items-start h-[16rem] p-4 cursor-pointer" onClick={(e) => handleOpenClassroom(e)}>
         <div className="flex justify-between items-center w-full">
           <div className="flex gap-4 items-center">
             <p className="text-[#000] text-[2rem] font-bold w-[4rem] aspect-square rounded-[20px] bg-[#FFC100] grid place-content-center">{subject[0]}</p>
@@ -47,20 +59,27 @@ function ClassroomCard(props) {
           ) }
           </div>
         </div>
+        <div className="flex flex-col justify-between w-full gap-4">
 
-        <div className="flex justify-between w-full items-center text-[12px]">
-          <div className="rounded-[6px] bg-[#E1D0FE] px-4 py-[4px] text-[#BF9DFF] font-bold">TAG</div>
-          <div className="border-[1px] rounded-[6px] border-[#ff0000] px-2 py-[4px] text-[#ff0000]">HIGH PRIORITY</div>
-        </div>
-        <div className="flex justify-between w-full">
-          <div className="bg-[#BFD4E2] rounded-[6px] px-4 py-2 text-[#2A709F] font-bold text-[12px] text-center">DUE DATE: 20/03/23</div>
-          <div className="flex">
-            <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
-            <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
-            <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
+          <div className="description">
+
+            DBMS is a software used to manage, store, retrieve and secure data efficiently.
           </div>
-        </div>
 
+          <div className="flex justify-between w-full items-center text-[12px]">
+            <div className="rounded-[6px] bg-[#E1D0FE] px-4 py-[4px] text-[#BF9DFF] font-bold">TAG</div>
+            <div className="border-[1px] rounded-[6px] border-[#ff0000] px-2 py-[4px] text-[#ff0000]">HIGH PRIORITY</div>
+          </div>
+          <div className="flex justify-between w-full">
+            <div className="bg-[#BFD4E2] rounded-[6px] px-4 py-2 text-[#2A709F] font-bold text-[12px] text-center">DUE DATE: 20/03/23</div>
+            <div className="flex w-[100px] justify-center items-center">
+              <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
+              <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
+              <img src={avatar} className="w-[30px] mx-[-5px]" alt="" />
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </main>

@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopNav from '../general-components/TopNav';
 import SideNavigation from '../general-components/SideNavigation';
 import BottomNavigation from '../general-components/BottomNavigation';
 import ClassroomCard from './ClassroomCard';
 import ClassroomImg from '../../../images/classroomwhite.svg';
+import getClassroomsDataendpoint from '../../../apiendpoints/getClassroomsDataendpoint';
 
 function Classroom() {
+  const [classroomData, setClassroomData] = useState([]);
+
+  useEffect(() => {
+    const asyncGetClassroomData = (async () => {
+      const UCID = localStorage.getItem('UCID_TOKEN');
+      const response = await getClassroomsDataendpoint({ UCID });
+      setClassroomData([...response.data.details]);
+    });
+
+    asyncGetClassroomData();
+  }, []);
+
   const navigate = useNavigate();
   return (
     <main className="flex flex-col md:flex-row">
@@ -27,10 +40,16 @@ function Classroom() {
               <button type="button" onClick={() => navigate('/create-classroom')} className="bg-[#FFC100] p-4 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  ">NEW CLASSROOM +</button>
             </div>
             <div className="grid grid-cols-3 gap-[1.5rem] px-4">
-              <ClassroomCard subject="DBMS" days="MON-FRI" time="9AM" />
-              <ClassroomCard subject="NETWORKS" days="WED-SAT" time="12PM" />
-              <ClassroomCard subject="WEB DEVELOPMENT" days="WED-SAT" time="12PM" />
-              <ClassroomCard subject="COMPUTER NETWORKS" days="WED-SAT" time="12PM" />
+              {classroomData.map((items) => (
+                <ClassroomCard
+                  subject={items.classroomName}
+                  days="MON-FRI"
+                  time="9AM"
+                  CLID={items.CLID_TOKEN}
+                />
+              ))}
+
+              {classroomData.length === 0 && navigate('/create-classroom')}
             </div>
           </div>
         </section>
@@ -43,9 +62,12 @@ function Classroom() {
           <div className="flex flex-col justify-center gap-2 ">
             <div className="  rounded-[20px] text-[16px] text-[#fff] ">CURRENT CLASSROOMS</div>
             <div className="max-h-[50%] overflow-hidden flex flex-col gap-2">
-              <ClassroomCard subject="DBMS" days="MON-FRI" time="9AM" />
-              <ClassroomCard subject="DATA MINING" days="WED-SAT" time="12PM" />
-              <ClassroomCard subject="SOFT COMPUTING" days="FRI" time="2PM" />
+              {classroomData.map((items) => (
+                <div key={items.CLID}>
+
+                  <ClassroomCard subject={items.classroomName} days="MON-FRI" time="9AM" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
