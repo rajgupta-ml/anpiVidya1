@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import avatar from '../../../images/avatar.svg';
 import classroom from '../../../images/classroom.svg';
-import ainotes from '../../../images/ainotes.svg';
 import notes from '../../../images/notes.svg';
+import aitools from '../../../images/aitools.png';
 import chat from '../../../images/chat.svg';
 import dashboard from '../../../images/dashboard.svg';
 import logout from '../../../images/logout.svg';
@@ -35,11 +35,11 @@ function SideNavigation() {
               <div>Classroom</div>
             </NavLink>
             <NavLink to="/ai-notes" className="flex gap-4 px-5 py-3 items-center">
-              <img src={ainotes} alt="" />
-              <div>AI Notes</div>
+              <img src={notes} alt="" />
+              <div>Notes</div>
             </NavLink>
             <NavLink to="/aitools" className="flex gap-4 px-5 py-3 items-center">
-              <img src={notes} alt="" />
+              <img className="w-[40px]" src={aitools} alt="" />
               <div>AI Tools</div>
             </NavLink>
             <NavLink to="/chats" className="flex gap-4 px-5 py-3 items-center">
