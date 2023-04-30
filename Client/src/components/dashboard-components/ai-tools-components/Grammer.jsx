@@ -32,10 +32,14 @@ function Grammer() {
 
             </div>
             {/* COMPOSE NEW MESSAGE */}
-            <div className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 ">
-              <input className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]" type="text" placeholder="TEXT TO BE GRAMMATICALLY CORRECTED..." />
-              <button className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]" type="button">CORRECT</button>
-            </div>
+            <form className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 ">
+              <input
+                type="text"
+                className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]"
+                placeholder="TEXT TO BE GRAMMATICALLY CORRECTED..."
+              />
+              <button className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]" type="submit">CORRECT</button>
+            </form>
           </div>
         </div>
 

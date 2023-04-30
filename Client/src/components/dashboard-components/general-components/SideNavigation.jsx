@@ -25,7 +25,7 @@ function SideNavigation() {
           <div className="my-2 text-[24px] capitalize">{localStorage.getItem('full_Name')}</div>
 
           {/* Side Navigation */}
-          <div className="desktop-sidebar-navigation | flex flex-col gap-4 ">
+          <div className="desktop-sidebar-navigation | flex flex-col gap-4 my-[5rem] ">
             <NavLink to="/dashboard" className="flex gap-4 px-5 py-3 items-center">
               <img src={dashboard} alt="" />
               <div>Dashboard</div>
