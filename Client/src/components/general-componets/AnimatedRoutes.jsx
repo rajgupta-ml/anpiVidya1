@@ -23,6 +23,7 @@ import Sentiment from '../dashboard-components/ai-tools-components/Sentiment';
 import Qna from '../dashboard-components/ai-tools-components/Qna';
 import Translator from '../dashboard-components/ai-tools-components/Translator';
 import Grammer from '../dashboard-components/ai-tools-components/Grammer';
+import ExistingTeacherDashboard from '../dashboard-components/teacher-dashboard-components/ExistingTeacherDashboard';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -51,6 +52,7 @@ function AnimatedRoutes() {
           <Route path="/aitools/qna" element={<Protected Components={Qna} />} />
           <Route path="/aitools/translator" element={<Protected Components={Translator} />} />
           <Route path="/aitools/grammer-corrector" element={<Protected Components={Grammer} />} />
+          <Route path="/exists" element={<Protected Components={ExistingTeacherDashboard} />} />
 
         </Routes>
       </AnimatePresence>
