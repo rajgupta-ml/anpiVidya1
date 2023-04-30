@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const ClassroomSchema = new Schema({
   CLID_TOKEN: {
@@ -21,5 +21,5 @@ const ClassroomSchema = new Schema({
 
 });
 
-const Classroom = model('Classroom', ClassroomSchema);
+const Classroom = mongoose.model('Classroom', ClassroomSchema);
 export default Classroom;

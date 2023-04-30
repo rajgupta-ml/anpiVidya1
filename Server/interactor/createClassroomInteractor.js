@@ -8,8 +8,8 @@ const createClassroomInteractor = async (
   },
 ) => {
   vaildateJwtPersistance(JWT_TOKEN);
-  const link = await inviteLinkCreationPersistance({ classroomName, UCID_TOKEN });
-  const clid = await clidTokenPersitance({ classroomName, UCID_TOKEN, link });
+  const clid = await clidTokenPersitance({ classroomName, UCID_TOKEN });
+  const link = await inviteLinkCreationPersistance({ clid });
   await CreateClassroomPersistance({
     clid, link, classroomName, UCID_TOKEN,
   });
