@@ -4,8 +4,43 @@ import TopNav from '../general-components/TopNav';
 import BottomNavigation from '../general-components/BottomNavigation';
 import SideNavigation from '../general-components/SideNavigation';
 
-function NewTeacherDashboard() {
+function NewTeacherDashboardBtn() {
   const navigate = useNavigate();
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <div className=" rounded-full text-[24px] text-[#fff] ">CREATE A NEW CLASSROOM</div>
+      <button
+        onClick={() => navigate('/create-classroom')}
+        type="button"
+        className="bg-[#FFC100] px-4 py-3 rounded-[10px] text-[18px] border-[1px] border-black flex justify-center items-center mt-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"
+      >
+        NEW CLASSROOM +
+
+      </button>
+
+    </div>
+  );
+}
+
+function NewStudentDashboardBtn() {
+  const navigate = useNavigate();
+  return (
+    <div className="flex flex-col justify-center items-center">
+      <div className=" rounded-full text-[24px] text-[#fff] ">JOIN A NEW CLASSROOM</div>
+      <button
+        onClick={() => navigate('/join-classroom')}
+        type="button"
+        className="bg-[#FFC100] px-4 py-3 rounded-[10px] text-[18px] border-[1px] border-black flex justify-center items-center mt-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"
+      >
+        JOIN CLASSROOM +
+
+      </button>
+
+    </div>
+  );
+}
+
+function NewTeacherDashboard() {
   return (
     <main className=" flex flex-col md:flex-row ">
       <TopNav title="DASHBOARD" />
@@ -20,16 +55,7 @@ function NewTeacherDashboard() {
               {' '}
               {localStorage.getItem('full_Name')}
             </div>
-            <div className=" rounded-full text-[24px] text-[#fff] ">CREATE A NEW CLASSROOM</div>
-            <button
-              onClick={() => navigate('/create-classroom')}
-              type="button"
-              className="bg-[#FFC100] px-4 py-3 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center mt-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"
-            >
-              NEW CLASSROOM +
-
-            </button>
-
+            {localStorage.getItem('userType') === 'Teacher' ? <NewTeacherDashboardBtn /> : <NewStudentDashboardBtn />}
           </div>
         </section>
       </div>
@@ -42,8 +68,7 @@ function NewTeacherDashboard() {
             {' '}
             {localStorage.getItem('full_Name')}
           </div>
-          <div className=" w-[80%] rounded-full text-[12px] text-[#fff] ">CREATE A NEW CLASSROOM</div>
-          <button type="button" onClick={() => navigate('/create-classroom')} className="bg-[#FFC100] px-4 py-3 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center mt-4 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">NEW CLASSROOM +</button>
+          {localStorage.getItem('userType') === 'Teacher' ? <NewTeacherDashboardBtn /> : <NewStudentDashboardBtn />}
         </div>
       </section>
 

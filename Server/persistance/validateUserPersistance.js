@@ -8,6 +8,7 @@ const validateUserPersistance = async ({ email }) => {
     fetchedHashedPassword: isUserPresent[0].password,
     fullName: isUserPresent[0].fullName,
     UCID_TOKEN: isUserPresent[0].UCID_TOKEN,
+    Type: isUserPresent[0].userType,
   };
 };
 

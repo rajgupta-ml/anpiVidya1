@@ -17,6 +17,9 @@ import createClassroomController from './controller/createClassroomController.js
 import getClassroomController from './controller/getClassroomController.js';
 import createMeetingController from './controller/createMeetingController.js';
 import getClassroomsDataController from './controller/getClassroomsDataController.js';
+import checkIfUserHasClassroomController from './controller/checkIfUserHasClassroomController.js';
+import joinClassroomsController from './controller/joinClassroomsController.js';
+import getStudentClassroomsDataController from './controller/getStudentClassroomsDataController.js';
 
 const AUTH_PATH = '/api/auth/';
 const VALIDATE_PATH = '/api/validate/';
@@ -40,9 +43,12 @@ app.post(`${AUTH_PATH}login`, validateUserController);
 app.post(`${AUTH_PATH}send-email-to-change-password`, createChangePasswordTokenController);
 app.post(`${CLASSROOM_PATH}create-classroom`, createClassroomController);
 app.post(`${CLASSROOM_PATH}create-meeting`, createMeetingController);
+app.post(`${CLASSROOM_PATH}join-classrooms`, joinClassroomsController);
 app.get(`${VALIDATE_PATH}validate-protected-pages`, validateServicesController);
 app.get(`${CLASSROOM_PATH}get-classroom-data`, getClassroomController);
 app.get(`${CLASSROOM_PATH}get-classrooms-data`, getClassroomsDataController);
+app.get(`${CLASSROOM_PATH}check-if-user-has-classrooms`, checkIfUserHasClassroomController);
+app.get(`${CLASSROOM_PATH}get-student-classrooms-data`, getStudentClassroomsDataController);
 app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
 // Starting the server
 app.listen(PORT, () => {
