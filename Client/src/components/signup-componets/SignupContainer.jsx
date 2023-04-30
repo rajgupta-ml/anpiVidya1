@@ -118,7 +118,7 @@ function SignupContainer() {
                 onBlur={handleBlur}
                 name="institution"
                 type="text"
-                placeholder="Enter your instiuttion"
+                placeholder="Enter your instituition"
                 className={
                   errors.institution
                     ? 'signup-input-field | w-[350px] h-[71px] font-[poppins]  px-8 bg-[#F0F5FB] border-4  border-[#E04F5F]  text-black text-[1.25rem] outline-none md:w-[495px]'

@@ -22,22 +22,22 @@ function InsideChat() {
               </div>
 
               {/* RECEIVING MESSAGE LAYOUT */}
-              <ReceiveMessage message="Hello Sir, How are you?" time="7PM" date="03/03/03" />
+              <ReceiveMessage message="Hello Sir, How are you?" time="07:00 PM" date="03/03/03" />
 
               {/* SENDING MESSAGE LAYOUT */}
-              <SendMessage message="Hey, I am fine." time="7PM" date="03/03/03" />
+              <SendMessage message="Hey, I am fine." time="07:01 PM" date="03/03/03" />
 
               {/* RECEIVING MESSAGE LAYOUT */}
-              <ReceiveMessage message="Hello Sir, How are you?" time="7PM" date="03/03/03" />
+              <ReceiveMessage message="Should I schedule a meeting with XYZ at 5PM?" time="07:02 PM" date="03/03/03" />
 
               {/* SENDING MESSAGE LAYOUT */}
-              <SendMessage message="Hey, I am fine." time="7PM" date="03/03/03" />
+              <SendMessage message="Please delay the meeting as I am busy today" time="07:03 PM" date="03/03/03" />
 
               {/* RECEIVING MESSAGE LAYOUT */}
-              <ReceiveMessage message="Hello Sir, How are you?" time="7PM" date="03/03/03" />
+              <ReceiveMessage message="OKay I will try to re-schedule it on a later day" time="07:04 PM" date="03/03/03" />
 
               {/* SENDING MESSAGE LAYOUT */}
-              <SendMessage message="Hey, I am fine." time="7PM" date="03/03/03" />
+              <SendMessage message="Thankyou" time="07:05 pm" date="03/03/03" />
             </div>
             {/* COMPOSE NEW MESSAGE */}
             <div className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 ">
