@@ -6,6 +6,7 @@ import BottomNavigation from '../general-components/BottomNavigation';
 import ClassroomCard from './ClassroomCard';
 import ClassroomImg from '../../../images/classroomwhite.svg';
 import getClassroomsDataendpoint from '../../../apiendpoints/getClassroomsDataendpoint';
+import getStudentDataEndpoint from '../../../apiendpoints/getStudentDataEndpoint';
 
 function Classroom() {
   const [classroomData, setClassroomData] = useState([]);
@@ -13,7 +14,9 @@ function Classroom() {
   useEffect(() => {
     const asyncGetClassroomData = (async () => {
       const UCID = localStorage.getItem('UCID_TOKEN');
-      const response = await getClassroomsDataendpoint({ UCID });
+      let response = '';
+      if (localStorage.getItem('userType') === 'Teacher') response = await getClassroomsDataendpoint({ UCID });
+      else response = await getStudentDataEndpoint({ UCID });
       setClassroomData([...response.data.details]);
     });
 
@@ -37,7 +40,8 @@ function Classroom() {
           <div className="bg-[#0079BC] flex flex-col gap-4 rounded-[20px] w-[80%]  ">
             <div className="flex justify-between items-center p-4">
               <div className="text-[#fff] text-[28px]">CURRENT CLASSROOMS</div>
-              <button type="button" onClick={() => navigate('/create-classroom')} className="bg-[#FFC100] p-4 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  ">NEW CLASSROOM +</button>
+              {localStorage.getItem('userType') === 'Teacher'
+              && <button type="button" onClick={() => navigate('/create-classroom')} className="bg-[#FFC100] p-4 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  ">NEW CLASSROOM +</button>}
             </div>
             <div className="grid grid-cols-3 gap-[1.5rem] px-4">
               {classroomData.map((items) => (
@@ -49,7 +53,7 @@ function Classroom() {
                 />
               ))}
 
-              {classroomData.length === 0 && navigate('/create-classroom')}
+              {(classroomData.length === 0 && localStorage.getItem('Teacher')) && navigate('/create-classroom')}
             </div>
           </div>
         </section>

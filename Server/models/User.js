@@ -25,7 +25,6 @@ const UserSchema = new Schema({
   userType: {
     type: String,
     required: [true, 'User Type is required'],
-    select: false,
   },
 
 });

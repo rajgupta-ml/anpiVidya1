@@ -24,8 +24,9 @@ function LoginContainer() {
         localStorage.setItem('JWT_TOKEN', response.data.userData.JWT_TOKEN);
         localStorage.setItem('full_Name', response.data.userData.fullName);
         localStorage.setItem('UCID_TOKEN', response.data.userData.UCID_TOKEN);
-        naviagte('/dashboard');
+        localStorage.setItem('userType', response.data.userData.type);
         toast.success('Login Successfull');
+        naviagte('/dashboard');
       } catch (error) {
         if ((error.response.data.err) === 'User not found') {
           toast.error('Looks Like You are not an user');

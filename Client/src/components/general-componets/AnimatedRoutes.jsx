@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
@@ -24,6 +25,8 @@ import Qna from '../dashboard-components/ai-tools-components/Qna';
 import Translator from '../dashboard-components/ai-tools-components/Translator';
 import Grammer from '../dashboard-components/ai-tools-components/Grammer';
 import ExistingTeacherDashboard from '../dashboard-components/teacher-dashboard-components/ExistingTeacherDashboard';
+import ProtectedSwitchRoutes from '../protect-components/ProtectedSwitchRoutes';
+import JoinClassroom from '../dashboard-components/classroom-components/JoinClassroom';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -38,7 +41,8 @@ function AnimatedRoutes() {
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/successfully-email-sent" element={<SuccessfullyEmailSent />} />
           <Route path="/change-password/:id" element={<NewPassword />} />
-          <Route path="/dashboard" element={<Protected Components={NewTeacherDashboard} />} />
+
+          <Route path="/dashboard" element={<ProtectedSwitchRoutes Component1={NewTeacherDashboard} Component2={ExistingTeacherDashboard} />} />
           <Route path="/classrooms" element={<Protected Components={Classroom} />} />
           <Route path="/create-classroom" element={<Protected Components={CreateNewClassroom} />} />
           <Route path="/chats" element={<Protected Components={Chat} />} />
@@ -52,7 +56,7 @@ function AnimatedRoutes() {
           <Route path="/aitools/qna" element={<Protected Components={Qna} />} />
           <Route path="/aitools/translator" element={<Protected Components={Translator} />} />
           <Route path="/aitools/grammer-corrector" element={<Protected Components={Grammer} />} />
-          <Route path="/exists" element={<Protected Components={ExistingTeacherDashboard} />} />
+          <Route path="/join-classroom" element={<Protected Components={JoinClassroom} />} />
 
         </Routes>
       </AnimatePresence>
