@@ -16,6 +16,13 @@ import Chat from '../dashboard-components/chat-component/Chat';
 import Report from '../dashboard-components/general-components/Report';
 import Notes from '../dashboard-components/notes-components/Notes';
 import InsideClassroom from '../dashboard-components/classroom-components/InsideClassroom';
+import InsideChat from '../dashboard-components/chat-component/InsideChat';
+import Aitools from '../dashboard-components/ai-tools-components/Aitools';
+import Classifier from '../dashboard-components/ai-tools-components/Classifier';
+import Sentiment from '../dashboard-components/ai-tools-components/Sentiment';
+import Qna from '../dashboard-components/ai-tools-components/Qna';
+import Translator from '../dashboard-components/ai-tools-components/Translator';
+import Grammer from '../dashboard-components/ai-tools-components/Grammer';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -37,6 +44,13 @@ function AnimatedRoutes() {
           <Route path="/report" element={<Report />} />
           <Route path="/ai-notes" element={<Notes />} />
           <Route path="/classroom/:id" element={<Protected Components={InsideClassroom} />} />
+          <Route path="/chats/:id" element={<Protected Components={InsideChat} />} />
+          <Route path="/aitools" element={<Protected Components={Aitools} />} />
+          <Route path="/aitools/classifier" element={<Protected Components={Classifier} />} />
+          <Route path="/aitools/sentiment-analyzer" element={<Protected Components={Sentiment} />} />
+          <Route path="/aitools/qna" element={<Protected Components={Qna} />} />
+          <Route path="/aitools/translator" element={<Protected Components={Translator} />} />
+          <Route path="/aitools/grammer-corrector" element={<Protected Components={Grammer} />} />
 
         </Routes>
       </AnimatePresence>

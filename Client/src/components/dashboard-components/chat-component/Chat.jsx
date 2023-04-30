@@ -1,61 +1,32 @@
+/* eslint-disable max-len */
 import React from 'react';
-import TopNav from '../general-components/TopNav';
 import SideNavigation from '../general-components/SideNavigation';
-import BottomNavigation from '../general-components/BottomNavigation';
-import ChatCard from './ChatCard';
+// import ChatCard from './ChatCard';
+
+import ChatInfo from './ChatInfo';
 
 function Chat() {
   return (
-    <main className="flex flex-col md:flex-row">
-      <TopNav title="CHATS" />
-      <div className="hidden md:flex justify-center">
-        <SideNavigation />
-        {/* MID SECTION FOR DESKTOP */}
-        <section className="font-['poppins'] flex flex-col items-center gap-4 ml-[250px]" style={{ width: 'calc(100vw - 280px)' }}>
-          <div className="bg-[#0079BC] w-[80%] rounded-[20px] my-8 ">
-            <div className="text-[#fff] font-bold text-[44px] my-8 px-8">Student Chat</div>
-          </div>
-          <div className="bg-[#0079BC] flex flex-col gap-4 rounded-[20px] w-[80%]">
-            <div className="flex justify-between items-center p-4">
-              <div className="text-[#fff] text-[28px]">CURRENT CHAT</div>
-              <button type="button" className="bg-[#FFC100] p-4 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]  ">NEW CHAT +</button>
+    <>
+      <SideNavigation />
+      <section className="font-['poppins'] flex flex-col w-[80%] ml-[265px] h-[100vh] uppercase" style={{ width: 'calc(100vw - 280px)' }}>
+        <div className="h-full ml-[70px] mr-[70px] mt-[50px] flex flex-col gap-6">
+          <div className="heading | bg-[#0079BC] text-white font-[poppins] text-[44px] font-bold py-[30px] px-[50px]  rounded-[20px]">CHATS</div>
+          <div className="bg-[#0079BC] h-full overflow-y-auto rounded-[20px] flex flex-col p-[40px] gap-4">
+            <div className="flex justify-between items-center">
+              <div className="recent-actions text-[28px] text-white">Recent Conversations</div>
+              <button type="button" className=" uppercase rounded-[20px] text-[32px] flex justify-center items-center bg-[#FFC93C] px-[60px] py-[16px] drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"> Start a Conversation</button>
             </div>
-            <div>
-              <div className="rounded-[20px] bg-[#fff] py-4 px-6 m-4">
-                <div className=" text-[36px]">User1</div>
-                <div className="text-[#0007] text-[18px] font-medium">Hello</div>
-                <div className="text-[#0007] text-[10px] font-medium">Now</div>
-
-              </div>
-
-              <div className="rounded-[20px] bg-[#fff] py-4 px-6 m-4">
-                <div className=" text-[36px]">User100</div>
-                <div className="text-[#0007] text-[18px] font-medium">OK</div>
-                <div className="text-[#0007] text-[10px] font-medium">Now</div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-      </div>
-
-      {/* MID SECTION FOR MOBILE */}
-      <section className="font-['poppins'] flex justify-center items-center md:hidden ">
-        <div className="flex flex-col justify-center p-6 my-8 bg-[#0079BC]  rounded-[20px] w-[80%] gap-8">
-          <button type="button" className="bg-[#FFC100] px-4 py-6 rounded-[20px] text-[18px] border-[1px] border-black flex justify-center items-center mt-4 w-full ">NEW CHAT +</button>
-          <div className="flex flex-col justify-center gap-2 ">
-            <div className="  rounded-[20px] text-[16px] text-[#fff] ">CURRENT CHAT</div>
-            <div className="max-h-[50%] overflow-hidden flex flex-col gap-2">
-              <ChatCard userName="User1" message="Hello" time="Now" />
-              <ChatCard userName="User100" message="OK" time="Now" />
-              <ChatCard userName="User13" message="Bye" time="Now" />
+            <div className="mettings flex flex-col gap-6">
+              <ChatInfo name="Jay Lamsung" email="jay@jay.com" />
+              <ChatInfo name="Hatem Jaerr" email="haten@jer.com" />
             </div>
           </div>
         </div>
       </section>
 
-      <BottomNavigation />
-    </main>
+    </>
+
   );
 }
 
