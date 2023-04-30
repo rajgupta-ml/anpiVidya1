@@ -25,13 +25,15 @@ function ClassroomCard(props) {
       {/* Classroom card for desktop */}
       <div className="hidden md:flex flex-col rounded-[20px] bg-[#fff] justify-between items-start h-[16rem] p-4">
         <div className="flex justify-between items-center w-full">
-          <p className="text-[#fff] text-[2rem] font-bold w-[4rem] aspect-square rounded-[20px] bg-[#0079BC] grid place-content-center">{subject[0]}</p>
-          <div className="flex flex-col">
-            <div title={subject} className="text-[1.5rem]">{subject.length > 8 ? `${subject.substring(0, 8)}...` : subject}</div>
-            <div className="text-[#0007] text-[12px]">
-              {days}
+          <div className="flex gap-4 items-center">
+            <p className="text-[#000] text-[2rem] font-bold w-[4rem] aspect-square rounded-[20px] bg-[#FFC100] grid place-content-center">{subject[0]}</p>
+            <div className="flex flex-col">
+              <div title={subject} className="text-[1.5rem] ">{subject.length > 14 ? `${subject.substring(0, 14)}...` : subject}</div>
+              <div className="text-[#0007] text-[12px]">
+                {days}
               &nbsp;|&nbsp;
-              {time}
+                {time}
+              </div>
             </div>
           </div>
           <div className="relative cursor-pointer">

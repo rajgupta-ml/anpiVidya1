@@ -38,9 +38,9 @@ function SideNavigation() {
               <img src={ainotes} alt="" />
               <div>AI Notes</div>
             </NavLink>
-            <NavLink to="/notes" className="flex gap-4 px-5 py-3 items-center">
+            <NavLink to="/aitools" className="flex gap-4 px-5 py-3 items-center">
               <img src={notes} alt="" />
-              <div>Notes</div>
+              <div>AI Tools</div>
             </NavLink>
             <NavLink to="/chats" className="flex gap-4 px-5 py-3 items-center">
               <img src={chat} alt="" />
