@@ -8,6 +8,7 @@ const smartNotesApiEndpoint = async ({
   const response = await axios.post(API_ENDPOINT, {
     inputNote,
   }, { headers: { 'Content-Type': 'application/json' } });
+
   return response;
 };
 

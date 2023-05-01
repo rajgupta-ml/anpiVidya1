@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi } from 'openai';
 async function smartNotesController(req, res) {
   const { inputNote } = req.body;
   const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: process.env.OPENAI_API,
   });
   const openai = new OpenAIApi(configuration);
 
@@ -21,8 +21,6 @@ async function smartNotesController(req, res) {
   } catch (error) {
     res.status(400).json({ error });
   }
-
-// console.log(response.data.choices[0].text);
 }
 
 export default smartNotesController;

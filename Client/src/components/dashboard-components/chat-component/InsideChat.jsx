@@ -1,10 +1,75 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
 import SideNavigation from '../general-components/SideNavigation';
 import ReceiveMessage from './ReceiveMessage';
 import SendMessage from './SendMessage';
+import addMessageEndpoint from '../../../apiendpoints/addMessageEndpoint';
+import getAllMessagesEndpoint from '../../../apiendpoints/getAllMessagesEndpoint';
 
 function InsideChat() {
+  const params = useParams();
+  const [message, setMessage] = useState({ message: '' });
+  const [allMessages, setAllMessages] = useState([]);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const scrollRef = useRef();
+  const socket = useRef();
+
+  useEffect(() => {
+    socket.current = io('http://localhost:3002');
+    socket.current.emit('add-user', localStorage.getItem('UCID_TOKEN'));
+  }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setMessage({ ...message, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await addMessageEndpoint({ from: localStorage.getItem('UCID_TOKEN'), to: params.id, message: message.message });
+    allMessages.push({ fromSelf: true, message: message.message });
+    socket.current.emit('send-msg', {
+      to: params.id,
+      from: localStorage.getItem('UCID_TOKEN'),
+      message: message.message,
+    });
+
+    const msgs = [...allMessages];
+    allMessages.push({ fromSelf: true, message: message.message });
+    setAllMessages(msgs);
+  };
+
+  useEffect(() => {
+    if (socket.current) {
+      socket.current.on('msg-recieve', (msg) => {
+        setArrivalMessage({ fromSelf: false, message: msg });
+      });
+    }
+  }, []);
+  useEffect(() => {
+    if (arrivalMessage) {
+      setAllMessages((prev) => [...prev, arrivalMessage]);
+    }
+  }, [arrivalMessage]);
+
+  console.log(allMessages);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behaviour: 'smooth' });
+  }, [allMessages]);
+
+  useEffect(() => {
+    const asyncFun = async () => {
+      const response = await getAllMessagesEndpoint({ from: localStorage.getItem('UCID_TOKEN'), to: params.id });
+      setAllMessages(response.data.messages);
+    };
+
+    asyncFun();
+  }, []);
+
   return (
     <>
       <SideNavigation />
@@ -21,29 +86,22 @@ function InsideChat() {
                 <hr className="w-full border-1 border-gray-300" />
               </div>
 
-              {/* RECEIVING MESSAGE LAYOUT */}
-              <ReceiveMessage message="Hello Sir, How are you?" time="07:00 PM" date="03/03/03" />
+              {allMessages.map((mssage) => (mssage.fromSelf ? <SendMessage message={mssage.messages || mssage.message} /> : <ReceiveMessage message={mssage.messages || mssage.message} />)) }
 
-              {/* SENDING MESSAGE LAYOUT */}
-              <SendMessage message="Hey, I am fine." time="07:01 PM" date="03/03/03" />
-
-              {/* RECEIVING MESSAGE LAYOUT */}
-              <ReceiveMessage message="Should I schedule a meeting with XYZ at 5PM?" time="07:02 PM" date="03/03/03" />
-
-              {/* SENDING MESSAGE LAYOUT */}
-              <SendMessage message="Please delay the meeting as I am busy today" time="07:03 PM" date="03/03/03" />
-
-              {/* RECEIVING MESSAGE LAYOUT */}
-              <ReceiveMessage message="OKay I will try to re-schedule it on a later day" time="07:04 PM" date="03/03/03" />
-
-              {/* SENDING MESSAGE LAYOUT */}
-              <SendMessage message="Thankyou" time="07:05 pm" date="03/03/03" />
             </div>
             {/* COMPOSE NEW MESSAGE */}
-            <div className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 ">
-              <input className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]" type="text" placeholder="SEND A MESSAGE..." />
-              <button className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]" type="button">SEND</button>
-            </div>
+            <form onSubmit={handleSubmit} className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 ">
+
+              <input onChange={handleChange} values={message.message} name="message" className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]" type="text" placeholder="SEND A MESSAGE..." />
+              <button
+                className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]"
+                type="submit"
+              >
+                SEND
+
+              </button>
+
+            </form>
           </div>
         </div>
 
