@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SideNavigation from '../general-components/SideNavigation';
 // import ChatInfo from '../chat-component/ChatInfo';
 import ReceiveMessage from '../chat-component/ReceiveMessage';
 import SendMessage from '../chat-component/SendMessage';
+import smartNotesApiEndpoint from '../../../apiendpoints/smartNotesApiEndpoint';
 
 function Sentiment() {
+  const [question, setQuestion] = useState('');
+  const [ans, setAns] = useState([]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setAns((prevAns) => [...prevAns, { formSelf: true, msg: question }]);
+    const response = await smartNotesApiEndpoint({ inputNote: question });
+    setAns((prevAns) => [...prevAns, { formSelf: false, msg: response.data.summary }]);
+  };
   return (
     <>
       <SideNavigation />
@@ -37,13 +47,14 @@ function Sentiment() {
                     4. Positive
                     5. Negative"
               />
-
+              {ans.map((items) => (items.formSelf === true ? <SendMessage message={items.msg} />
+                : <ReceiveMessage message={items.msg} />))}
             </div>
             {/* COMPOSE NEW MESSAGE */}
-            <div className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 ">
-              <input className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]" type="text" placeholder="SENTENCES WITH SOME VALID SENTIMENTS..." />
-              <button className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]" type="button">ANALYZE</button>
-            </div>
+            <form className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 " onSubmit={handleSubmit}>
+              <input onChange={(e) => (setQuestion(e.target.value))} className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]" type="text" placeholder="SENTENCES WITH SOME VALID SENTIMENTS..." />
+              <button className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]" type="submit">ANALYZE</button>
+            </form>
           </div>
         </div>
 

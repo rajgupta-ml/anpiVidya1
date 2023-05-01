@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SideNavigation from '../general-components/SideNavigation';
 // import ChatInfo from '../chat-component/ChatInfo';
 import ReceiveMessage from '../chat-component/ReceiveMessage';
 import SendMessage from '../chat-component/SendMessage';
+import smartNotesApiEndpoint from '../../../apiendpoints/smartNotesApiEndpoint';
 
 function Qna() {
+  const [question, setQuestion] = useState('');
+  const [ans, setAns] = useState([]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setAns((prevAns) => [...prevAns, { formSelf: true, msg: question }]);
+    const response = await smartNotesApiEndpoint({ inputNote: question });
+    setAns((prevAns) => [...prevAns, { formSelf: false, msg: response.data.summary }]);
+  };
   return (
     <>
       <SideNavigation />
@@ -29,12 +39,14 @@ function Qna() {
 
               {/* RECEIVING MESSAGE LAYOUT */}
               <ReceiveMessage message="Human life expectancy in the United States is 78 years." />
+              {ans.map((items) => (items.formSelf === true ? <SendMessage message={items.msg} />
+                : <ReceiveMessage message={items.msg} />))}
             </div>
             {/* COMPOSE NEW MESSAGE */}
-            <div className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 ">
-              <input className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]" type="text" placeholder="ASK A FACTUAL QUESTION..." />
-              <button className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]" type="button">ASK</button>
-            </div>
+            <form className="flex justify-center items-center gap-4 bg-[#fff] py-4 px-8 " onSubmit={handleSubmit}>
+              <input onChange={(e) => (setQuestion(e.target.value))} className="bg-[#DBDCDC] h-[5rem] w-full rounded-[20px] px-[30px] text-[28px]" type="text" placeholder="ASK A FACTUAL QUESTION..." />
+              <button className="bg-[#FFC100] h-[5rem] px-[30px] rounded-[20px] text-[28px]" type="submit">ASK</button>
+            </form>
           </div>
         </div>
 
